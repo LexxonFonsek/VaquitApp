@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143157196786",
+    "project_id": "vaquitapp-2024b",
+    "storage_bucket": "vaquitapp-2024b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143157196786:android:84a7400d6b3f3635dddd6b",
+        "android_client_info": {
+          "package_name": "proyecto.vaquitapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn6ImzHmxysOJMQVVw_WiYigMHJHUZ2mU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
