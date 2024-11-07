@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("io.coil-kt.coil3:coil-compose:3.0.1")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.1")
     //implementation("com.airbnb.android:lottie:$lottieVersion")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
