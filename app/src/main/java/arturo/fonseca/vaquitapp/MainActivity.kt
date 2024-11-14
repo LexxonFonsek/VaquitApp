@@ -15,11 +15,16 @@ import arturo.fonseca.vaquitapp.navigation.AppNavigation
 import arturo.fonseca.vaquitapp.ui.theme.AltaVacas.ui.AltaVacasScreen
 import arturo.fonseca.vaquitapp.ui.theme.VaquitappTheme
 import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val analytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        analytics.logEvent("InitScreen", bundle)
         setContent {
             VaquitappTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

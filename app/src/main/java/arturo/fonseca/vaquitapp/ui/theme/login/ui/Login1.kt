@@ -11,13 +11,13 @@ import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
+
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
-import coil3.compose.AsyncImage
+
 
 
 @Composable
@@ -95,7 +95,7 @@ import coil3.compose.AsyncImage
                         Column(
                             modifier = Modifier
                                 .padding(horizontal = 25.dp,)
-                                .offset(x = 0.dp, y = 300.dp)
+                                .offset(x = 0.dp, y = 270.dp)
                                 .clip(shape = RoundedCornerShape(20.dp))
                                 .fillMaxWidth()
                                 .background(
@@ -162,7 +162,7 @@ import coil3.compose.AsyncImage
                             Row(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 modifier = Modifier
-                                    .padding(bottom = 2.dp,start = 22.dp,end = 22.dp,)
+                                    .padding(bottom = 24.dp,start = 24.dp,end = 24.dp,)
                                     .fillMaxWidth()
                             ){
 //                                AsyncImage(
@@ -180,6 +180,7 @@ import coil3.compose.AsyncImage
                                         Column(
                                             modifier = Modifier
                                                 .fillMaxWidth()
+                                                .height(52.dp)
                                                 .shadow(
                                                     elevation = 4.dp,
                                                     spotColor = Color(0x40000000),
