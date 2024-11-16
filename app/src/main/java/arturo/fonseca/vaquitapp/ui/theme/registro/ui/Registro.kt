@@ -12,15 +12,17 @@ import androidx.compose.material3.TextField
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import androidx.navigation.NavController
 
 
 @Composable
-fun Registro(modifier: Modifier = Modifier) {
+fun Registro(navController: NavController, modifier: Modifier = Modifier) {
     var correo by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
@@ -345,5 +347,5 @@ fun Registro(modifier: Modifier = Modifier) {
 @Preview(widthDp = 412, heightDp = 917)
 @Composable
 private fun RegistroPreview() {
-    Registro(Modifier)
+    Registro(navController = NavController(LocalContext.current))
 }

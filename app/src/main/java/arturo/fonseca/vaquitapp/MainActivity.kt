@@ -10,10 +10,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import arturo.fonseca.vaquitapp.navigation.AppNavigation
 import arturo.fonseca.vaquitapp.ui.theme.AltaVacas.ui.AltaVacasScreen
 import arturo.fonseca.vaquitapp.ui.theme.VaquitappTheme
+import arturo.fonseca.vaquitapp.ui.theme.login.ui.Login1
 import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
 import com.google.firebase.analytics.FirebaseAnalytics
 
@@ -41,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    AppNavigation()
+    Login1(navController = NavController(LocalContext.current))
 }
 
 @Preview(showBackground = true)

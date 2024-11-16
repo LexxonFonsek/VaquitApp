@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -38,9 +39,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun AltaVacasScreen(modifier: Modifier = Modifier) {
+fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .requiredWidth(width = 412.dp)
@@ -546,5 +548,5 @@ fun SelectedTrueStateEnabledIconTrue(modifier: Modifier = Modifier) {
 @Preview(widthDp = 412, heightDp = 917)
 @Composable
 private fun AltaVacasScreenPreview() {
-    AltaVacasScreen(Modifier)
+    AltaVacasScreen(navController = NavController(LocalContext.current))
 }
