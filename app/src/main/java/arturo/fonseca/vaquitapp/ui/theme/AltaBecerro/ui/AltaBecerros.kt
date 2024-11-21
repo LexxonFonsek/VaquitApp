@@ -28,8 +28,8 @@ import arturo.fonseca.vaquitapp.R
 fun AltaBecerros(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
+            .requiredWidth(width = 412.dp)
+            .requiredHeight(height = 917.dp)
             .background(
                 color = Color(0xFFFFFFFF),
             )
