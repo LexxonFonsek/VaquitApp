@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.InfoToro.ui
+package arturo.fonseca.vaquitapp.InfoAnimal.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -46,7 +46,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 
 @Composable
-fun InfoToroScreen(modifier: Modifier = Modifier) {
+fun InfoAnimalScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .requiredWidth(width = 412.dp)
@@ -368,5 +368,5 @@ fun StyleMonogram(modifier: Modifier = Modifier) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CargaPreview() {
-    InfoToroScreen(modifier = Modifier)
+    InfoAnimalScreen(modifier = Modifier)
 }
