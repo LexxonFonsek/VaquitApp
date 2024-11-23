@@ -1,4 +1,4 @@
-
+@file:Suppress("NAME_SHADOWING")
 
 package arturo.fonseca.vaquitapp.ui.theme.AltaVacas.ui
 
@@ -138,10 +138,7 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
         Campania(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 20.dp,
-                    y = 489.dp
-                ))
+        )
         Text(
             text = "Foto de la vaca",
             color = Color.Black,
@@ -511,11 +508,6 @@ fun ColorVac(modifier: Modifier) {
 fun Campania(modifier: Modifier) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        modifier = modifier
-            .requiredWidth(width = 348.dp)
-            .requiredHeight(height = 56.dp)
-            .clip(shape = RoundedCornerShape(5.dp))
-            .fillMaxSize()
     )
     {
         var text by remember {
@@ -524,7 +516,45 @@ fun Campania(modifier: Modifier) {
         TextField(
             value = text, onValueChange = {text = it},
             label = {Text("Número de Campaña")},
-            //modifier = modifier.fillMaxSize(),
+            modifier = modifier
+                .offset(
+                x = 20.dp,
+                y = 489.dp
+            )
+                .requiredWidth(width = 200.dp)
+                .requiredHeight(height = 56.dp)
+                .clip(shape = RoundedCornerShape(5.dp))
+
+                .fillMaxSize(),
+            placeholder = { Text("") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
+            singleLine = true, //No se amplia al darle enter en eñl e teclado
+            maxLines = 1,
+            colors = TextFieldDefaults.colors(
+                Color(0xFF000000),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            )
+        )
+    }
+    Column (
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+    ) {
+        var text by remember {
+            mutableStateOf("")
+        }
+        TextField(
+            value = text, onValueChange = {text = it},
+            label = {Text("Peso en KG")},
+            modifier = modifier
+                .offset(
+                x = 240.dp,
+                y = 489.dp
+            )
+                .requiredWidth(width = 127.dp)
+                .requiredHeight(height = 56.dp)
+                .clip(shape = RoundedCornerShape(5.dp))
+,
             placeholder = { Text("") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en eñl e teclado
@@ -540,12 +570,9 @@ fun Campania(modifier: Modifier) {
 
 @Composable
 fun Procedencia(modifier: Modifier) {
-    Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        modifier = modifier
-            .requiredWidth(width = 348.dp)
-            .requiredHeight(height = 56.dp)
-            .clip(shape = RoundedCornerShape(5.dp))
-            .fillMaxSize())
+    Column (
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+    )
     {
 
         var text by remember {
@@ -554,7 +581,11 @@ fun Procedencia(modifier: Modifier) {
         TextField(
             value = text, onValueChange = {text = it},
             label = {Text("Lugar de procedencia")},
-            //modifier = modifier.fillMaxSize(),
+            modifier = modifier
+                .requiredWidth(width = 348.dp)
+                .requiredHeight(height = 56.dp)
+                .clip(shape = RoundedCornerShape(5.dp))
+                .fillMaxSize(),
             placeholder = { Text("Ej: Rancho La Loma") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en el teclado
@@ -574,18 +605,18 @@ fun Procedencia(modifier: Modifier) {
 @Composable
 fun Cornamenta(modifier: Modifier) {
     Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        modifier = modifier
-            .requiredWidth(width = 348.dp)
-            .requiredHeight(height = 56.dp)
-            .clip(shape = RoundedCornerShape(5.dp))
-            .fillMaxSize()
+
     )
     {
         var text by remember {
             mutableStateOf("")
         }
         TextField(
-            //modifier = modifier.fillMaxSize(),
+            modifier = modifier
+                .requiredWidth(width = 348.dp)
+                .requiredHeight(height = 56.dp)
+                .clip(shape = RoundedCornerShape(5.dp))
+                .fillMaxSize(),
             value = text, onValueChange = {text = it},
             label = {Text("Cornamenta")},
             placeholder = { Text("") },
