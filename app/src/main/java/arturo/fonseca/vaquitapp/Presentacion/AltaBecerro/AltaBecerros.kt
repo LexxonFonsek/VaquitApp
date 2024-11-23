@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.ui.theme.AltaBecerros.ui
+package arturo.fonseca.vaquitapp.Presentacion.AltaBecerro
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -7,20 +7,16 @@ import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
-import androidx.compose.foundation.text.*
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.rememberBottomAppBarState
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -28,12 +24,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import java.util.Calendar
-import androidx.compose.material3.Icon as Icon
+
 
 @Composable
 fun AltaBecerros(navController: NavController) {
@@ -130,10 +125,10 @@ fun AltaBecerros(navController: NavController) {
 
                             .width(200.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {nombre = it},
-                            placeholder = { Text("E.j: Juan Perez") },
+                            label = { Text("E.j: Juan Perez") },
                             modifier = Modifier
                                 .height(50.dp)
                         )
@@ -157,10 +152,10 @@ fun AltaBecerros(navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(200.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {sexo = it},
-                            placeholder = { Text("E.j: Blanco") },
+                            label = { Text("E.j: Blanco") },
                             modifier = Modifier
                                 .height(50.dp)
                         )
@@ -222,8 +217,7 @@ fun AltaBecerros(navController: NavController) {
                     )
                     .clip(RoundedCornerShape(5.dp))
                     .fillMaxWidth()
-                    .padding(12.dp) // Margen interno dentro del cuadro
-            ) {
+                    ) {
 
                 // Caja que simula el campo de fecha con un clic
                 Box(
@@ -236,11 +230,10 @@ fun AltaBecerros(navController: NavController) {
                         }
                         .padding(10.dp)
                         .background(Color.White, shape = RoundedCornerShape(5.dp))
-                        .border(1.dp, Color.LightGray, RoundedCornerShape(5.dp))
+
                 ) {
                     Text(
                         text = if (selectedDate.isEmpty()) "Seleccionar fecha" else selectedDate,
-                        color = if (selectedDate.isEmpty()) Color.Gray else Color.Black,
                         modifier = Modifier.align(Alignment.CenterStart)
                     )
 
@@ -266,10 +259,10 @@ fun AltaBecerros(navController: NavController) {
                         .clip(shape = RoundedCornerShape(5.dp))
                         .fillMaxWidth()
                 ) {
-                    TextField(
+                    OutlinedTextField(
                         value = "",
                         onValueChange = {peso = it},
-                        placeholder = { Text("E.j: 10kg") },
+                        label = { Text("E.j: 10kg") },
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -279,7 +272,7 @@ fun AltaBecerros(navController: NavController) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(bottom = 7.dp,)
+                        .padding(bottom = 4.dp,)
                         .fillMaxWidth()
                 ) {
                     Text(
@@ -314,10 +307,10 @@ fun AltaBecerros(navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(163.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {madre = it},
-                            placeholder = { Text("E.j: Madre") },
+                            label = { Text("E.j: Madre") },
                             modifier = Modifier.fillMaxWidth()
                         )
 
@@ -332,10 +325,10 @@ fun AltaBecerros(navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(162.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {padre = it},
-                            placeholder = { Text("E.j: Padre") },
+                            label = { Text("E.j: Padre") },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
@@ -343,7 +336,7 @@ fun AltaBecerros(navController: NavController) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(bottom = 5.dp,)
+                        .padding(bottom = 3.dp,)
                         .fillMaxWidth()
                 ) {
 //                CoilImage(
@@ -397,7 +390,7 @@ fun AltaBecerros(navController: NavController) {
                 )
                 Column(
                     modifier = Modifier
-                        .padding(bottom = 20.dp,)
+                        .padding(bottom = 10.dp,)
                         .border(
                             width = 1.dp,
                             color = Color.Black,
@@ -406,10 +399,10 @@ fun AltaBecerros(navController: NavController) {
                         .clip(shape = RoundedCornerShape(5.dp))
                         .fillMaxWidth()
                 ) {
-                    TextField(
+                    OutlinedTextField(
                         value = "",
                         onValueChange = {embrion = it},
-                        placeholder = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
+                        label = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
                         modifier = Modifier.fillMaxWidth()
                     )
 
@@ -432,10 +425,10 @@ fun AltaBecerros(navController: NavController) {
                         .clip(shape = RoundedCornerShape(5.dp))
                         .fillMaxWidth()
                 ) {
-                    TextField(
+                    OutlinedTextField(
                         value = "",
                         onValueChange = {procedencia = it},
-                        placeholder = { Text("Ej.: Rancho “La Loma”, Guachinango") },
+                        label = { Text("Ej.: Rancho “La Loma”, Guachinango") },
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -443,7 +436,7 @@ fun AltaBecerros(navController: NavController) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(bottom = 7.dp,)
+                        .padding(bottom = 4.dp,)
                         .fillMaxWidth()
                 ) {
                     Text(
@@ -478,10 +471,10 @@ fun AltaBecerros(navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(163.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {siniiga = it},
-                            placeholder = { Text("E.j: Blanco", fontSize = 15.sp) },
+                            label = { Text("E.j: Blanco", fontSize = 15.sp) },
                             modifier = Modifier
                                 .height(50.dp),
                             textStyle = TextStyle(fontSize = 15.sp)
@@ -498,10 +491,10 @@ fun AltaBecerros(navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(162.dp)
                     ) {
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {campaña = it},
-                            placeholder = { Text("E.j: ") },
+                            label = { Text("E.j: ") },
                             modifier = Modifier.fillMaxWidth()
                                 .height(50.dp)
                         )
@@ -577,10 +570,10 @@ fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
 }
 
 //
-//@Preview(showSystemUi = true)
-//        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-//        @Preview(widthDp = 412, heightDp = 917)
-//        @Composable
-//        private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
-//            AltaBecerros(Modifier)
-//        }
+@Preview(showSystemUi = true)
+        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+        @Preview(widthDp = 412, heightDp = 917)
+        @Composable
+        private fun AltaBecerrosPreview() {
+            AltaBecerros( navController = NavController(LocalContext.current))
+        }

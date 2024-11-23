@@ -1,13 +1,9 @@
-package arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui
+package arturo.fonseca.vaquitapp.Presentacion.Home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -22,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -32,30 +27,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
 import arturo.fonseca.vaquitapp.R
-import arturo.fonseca.vaquitapp.navigation.appScreens
-import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
 
 @Composable
-fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifier){
+fun MenuPrincipalScreen(navController: NavController){
     Box(
-        modifier = modifier
+        modifier = Modifier
 //            .requiredWidth(width = 412.dp)
 //            .requiredHeight(height = 917.dp)
             .background(color = Color.White)
             .fillMaxSize()
             .padding(0.dp)
     ) {
-        BtnAniadir(
-            navController = navController,
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 32.dp,
-                    y = 110.dp
-                )
-        )
+
         Text(
             text = "Consulta ganado",
             color = Color.Black,
@@ -190,8 +175,8 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
 
 
 @Composable
-fun BtnAniadir(navController: NavController,modifier: Modifier) {
-    Button(onClick = {navController.navigate(route = appScreens.MenuSecundarioScreen)}, modifier = modifier
+fun BtnAniadir(navigateToSecundario: () -> Unit) {
+    Button(onClick = {navigateToSecundario()}, modifier = Modifier
         .requiredWidth(352.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -439,8 +424,3 @@ fun BtnVendidos(modifier: Modifier) {
 //    }
 //}
 
-@Preview(widthDp = 412, heightDp = 917)
-@Composable
-private fun MenuPrincipalScreenPreview() {
-   MenuPrincipalScreen(navController = NavController(LocalContext.current))
-}

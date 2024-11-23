@@ -1,6 +1,7 @@
-package arturo.fonseca.vaquitapp.ui.theme.login.ui
+package arturo.fonseca.vaquitapp.Presentacion.Login
 
 
+import android.util.Log
 import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -8,36 +9,37 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.ui.*
 
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.platform.LocalContext
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
-import arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui.BtnAniadir
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 @Composable
-fun Login1(navController: NavController, modifier: Modifier = Modifier) {
+
+fun Login1(auth: FirebaseAuth, navController: NavController) {
     var usuario by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var loginError by remember { mutableStateOf("") } // State for login error
+
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(20.dp), // Added padding
@@ -92,24 +94,48 @@ fun Login1(navController: NavController, modifier: Modifier = Modifier) {
 
         // Buttons (Acceder, Registrarse)
         Button(
-            onClick = { navController.navigate(appScreens.MenuSecundarioScreen) },
+            onClick = {
+                auth.signInWithEmailAndPassword(usuario, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Login", "signInWithEmail:success")
+                            val user = auth.currentUser
+                            navController.navigate(appScreens.Home.route)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Login", "signInWithEmail:failure", task.exception)
+                            loginError = "Error de inicio de sesión" // Update error state
+                        }
+                    }
+            },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
         ) {
             Text("Acceder", color = Color.White)
         }
 
+        // Display login error if any
+        if (loginError.isNotEmpty()) {
+            Text(text = loginError, color = Color.Red)
+        }
+
         Spacer(modifier = Modifier.height(10.dp)) // Add space
 
-        TextButton(onClick = { /*TODO*/ }) { // Replace with registration navigation
+//        TextButton(onClick = {navController.navigate(appScreens.Registro.route)}) { // Replace with registration navigation
+//            Text("¿Olvidaste tu Contraseña?", color = Color(0xFF2D54E1))
+//        }
+//        Spacer(modifier = Modifier.height(10.dp)) // Add space
+
+        TextButton(onClick = {navController.navigate(appScreens.Registro.route)}) { // Replace with registration navigation
             Text("¿No tienes cuenta? Regístrate aquí.", color = Color(0xFF2D54E1))
         }
     }
 }
 
 
-@Preview(widthDp = 412, heightDp = 917)
-@Composable
-fun Login1Preview() {
-    Login1(navController = NavController(LocalContext.current))
-}
+//@Preview(widthDp = 412, heightDp = 917)
+//@Composable
+//fun Login1Preview() {
+//    Login1(navController = NavHostController(LocalContext.current), auth = Firebase.auth)
+//}

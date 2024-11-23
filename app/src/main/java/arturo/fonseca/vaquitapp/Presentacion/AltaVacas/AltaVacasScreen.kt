@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 
-package arturo.fonseca.vaquitapp.AltaReproduccionVacas.ui
+package arturo.fonseca.vaquitapp.Presentacion.AltaVacas
 
 import android.content.res.Configuration
 import android.icu.util.Calendar
@@ -48,12 +48,27 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Vacas
+import arturo.fonseca.vaquitapp.navigation.appScreens
 
 @Composable
-fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modifier) {
+fun AltaVacasScreen(navController: NavController) {
+    var nombre by remember { mutableStateOf("") }
+    var color by remember { mutableStateOf("") }
+    var raza by remember { mutableStateOf("") }
+    var cruza by remember { mutableStateOf("") }
+    var foto by remember { mutableStateOf("") }
+    var hierro by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf("") }
+    var procedencia by remember { mutableStateOf("") }
+    var siniiga by remember { mutableStateOf("") }
+    var campania by remember { mutableStateOf("") }
+
     Box(
 
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
 //            .requiredWidth(width = 412.dp)
 //            .requiredHeight(height = 917.dp)
@@ -207,7 +222,7 @@ fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modif
                 )
                 .wrapContentHeight(align = Alignment.CenterVertically))
         OutlinedButton(
-            onClick = { },
+            onClick = {navController.navigate(route = appScreens.MenuSecundario.route)},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -237,7 +252,20 @@ fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modif
             }
         }
         OutlinedButton(
-            onClick = {},
+            onClick = {
+                val vaca = Vacas(
+                    nombre = nombre,
+                    color = color,
+                    raza = raza,
+                    cruza = cruza,
+                    foto = foto,
+                    hierro = hierro,
+                    nacimiento = date,
+                    procedencia = procedencia,
+                    siniiga = siniiga,
+                    campania = campania
+                )
+            },
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -349,7 +377,7 @@ fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modif
 }
 
 @Composable
-fun FechaNac(modifier: Modifier) {
+fun FechaNac( modifier: Modifier) {
     val year: Int
     val month: Int
     val day: Int
@@ -360,7 +388,7 @@ fun FechaNac(modifier: Modifier) {
     day = calendar.get(Calendar.DAY_OF_MONTH)
 
     val context = LocalContext.current
-    val date = remember { mutableStateOf("") }
+    var date = remember { mutableStateOf("") }
     val datePickerDialog = android.app.DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
@@ -369,7 +397,7 @@ fun FechaNac(modifier: Modifier) {
 
     )
     Column(
-        modifier = modifier
+        modifier = Modifier
             .requiredWidth(width = 348.dp)
             .requiredHeight(height = 70.dp)
             .fillMaxSize(),
@@ -390,15 +418,16 @@ fun FechaNac(modifier: Modifier) {
 }
 
 @Composable
-fun Siniiga(modifier: Modifier) {
+fun Siniiga( modifier: Modifier) {
     val siNo = remember { mutableStateOf(true) }
-    var text by remember {
+
+    var siniiga by remember {
         mutableStateOf("")
     }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        modifier = modifier
+        modifier = Modifier
             .requiredWidth(width = 348.dp)
             .requiredHeight(height = 56.dp)
             .clip(shape = RoundedCornerShape(5.dp))
@@ -408,8 +437,8 @@ fun Siniiga(modifier: Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween // Space elements evenly
         ) {
             TextField(
-                value = text, // Remember text state
-                onValueChange = { text = it },
+                value = siniiga, // Remember text state
+                onValueChange = { siniiga = it },
                 label = { Text("Número SINIIGA") },
                 placeholder = { Text("Agrega número de 10 digitos.") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -448,11 +477,11 @@ fun Cruza(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var cruza by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it },
+            value = cruza, onValueChange = { cruza = it },
             label = { Text("Cruza") },
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Simmental") },
@@ -479,11 +508,11 @@ fun ColorVac(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var color by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it},
+            value = color, onValueChange = { color = it},
             label = {Text("Color")},
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Pinta") },
@@ -510,11 +539,11 @@ fun Campania(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var campania by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = {text = it},
+            value = campania, onValueChange = {campania = it},
             label = {Text("Número de Campaña")},
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("") },
@@ -540,11 +569,11 @@ fun Procedencia(modifier: Modifier) {
             .fillMaxSize())
     {
 
-        var text by remember {
+        var procedencia by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = {text = it},
+            value = procedencia, onValueChange = {procedencia = it},
             label = {Text("Lugar de procedencia")},
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ej: Rancho La Loma") },
@@ -573,12 +602,12 @@ fun Cornamenta(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var cornamenta by remember {
             mutableStateOf("")
         }
         TextField(
             //modifier = modifier.fillMaxSize(),
-            value = text, onValueChange = {text = it},
+            value = cornamenta, onValueChange = {cornamenta = it},
             label = {Text("Cornamenta")},
             placeholder = { Text("") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
@@ -607,10 +636,10 @@ fun TxtNombre(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var nombre by remember {
             mutableStateOf("")
         }
-        TextField(value = text, onValueChange = {text = it},
+        TextField(value = nombre, onValueChange = {nombre = it},
             label = {Text("Nombre")},
             //modifier = modifier.fillMaxSize(),
             placeholder = {Text("Ejemplo: Lola")},
@@ -640,11 +669,11 @@ fun Raza(modifier: Modifier = Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var raza by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it },
+            value = raza, onValueChange = { raza = it },
             label = { Text("Raza") },
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Holstein") },
@@ -716,6 +745,6 @@ fun Raza(modifier: Modifier = Modifier) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AltaVacasScreenPreview() {
-    AltaVacasScreen(Modifier)
+    AltaVacasScreen(navController = NavController(LocalContext.current))
 
 }
