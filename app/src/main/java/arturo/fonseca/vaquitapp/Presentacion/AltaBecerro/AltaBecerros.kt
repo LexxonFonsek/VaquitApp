@@ -27,12 +27,27 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.R
+import arturo.fonseca.vaquitapp.navigation.appScreens
 import java.util.Calendar
 import androidx.compose.material3.Icon as Icon
 
 @Composable
-fun AltaBecerros(modifier: Modifier = Modifier) {
+fun AltaBecerros(navController: NavController) {
+    var nombre by remember { mutableStateOf("") }
+    var sexo by remember { mutableStateOf("") }
+    var nacimiento by remember { mutableStateOf("") }
+    var peso by remember { mutableStateOf("") }
+    var madre by remember { mutableStateOf("") }
+    var padre by remember { mutableStateOf("") }
+    var embrion by remember { mutableStateOf("") }
+    var procedencia by remember { mutableStateOf("") }
+    var siniiga by remember { mutableStateOf("") }
+    var campaña by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .requiredWidth(width = 412.dp)
@@ -117,7 +132,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {nombre = it},
                             placeholder = { Text("E.j: Juan Perez") },
                             modifier = Modifier
                                 .height(50.dp)
@@ -144,7 +159,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {sexo = it},
                             placeholder = { Text("E.j: Blanco") },
                             modifier = Modifier
                                 .height(50.dp)
@@ -186,6 +201,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                 context,
                 { _, year, month, dayOfMonth ->
                     selectedDate = "$dayOfMonth/${month + 1}/$year"
+
                 },
                 2023, 0, 1 // Fecha inicial (año, mes, día)
             )
@@ -252,8 +268,8 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                 ) {
                     TextField(
                         value = "",
-                        onValueChange = {},
-                        placeholder = { Text("E.j: Juan Perez") },
+                        onValueChange = {peso = it},
+                        placeholder = { Text("E.j: 10kg") },
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -300,7 +316,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {madre = it},
                             placeholder = { Text("E.j: Madre") },
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -318,7 +334,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {padre = it},
                             placeholder = { Text("E.j: Padre") },
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -392,7 +408,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                 ) {
                     TextField(
                         value = "",
-                        onValueChange = {},
+                        onValueChange = {embrion = it},
                         placeholder = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -418,7 +434,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                 ) {
                     TextField(
                         value = "",
-                        onValueChange = {},
+                        onValueChange = {procedencia = it},
                         placeholder = { Text("Ej.: Rancho “La Loma”, Guachinango") },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -464,7 +480,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {siniiga = it},
                             placeholder = { Text("E.j: Blanco", fontSize = 15.sp) },
                             modifier = Modifier
                                 .height(50.dp),
@@ -484,7 +500,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     ) {
                         TextField(
                             value = "",
-                            onValueChange = {},
+                            onValueChange = {campaña = it},
                             placeholder = { Text("E.j: ") },
                             modifier = Modifier.fillMaxWidth()
                                 .height(50.dp)
@@ -496,7 +512,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Button(
-                        onClick = { /* Acción para botón Atrás */ },
+                        onClick = {navController.navigate(appScreens.MenuSecundario.route)},
                         colors = ButtonDefaults.buttonColors(
                             containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
                             contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
@@ -509,7 +525,20 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                         Text(text = "Atrás")
                     }
                     Button(
-                        onClick = { /* Acción para botón Atrás */ },
+                        onClick = {
+                            val becerro = Becerros(
+                            nombre = nombre,
+                            sexo = sexo,
+                            nacimiento = nacimiento,
+                            peso = peso,
+                            madre = madre,
+                            padre = padre,
+                                embrion = embrion,
+                            procedencia = procedencia,
+                                siniiga = siniiga,
+                                campaña = campaña
+                        )
+                        },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
                             contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
@@ -519,7 +548,7 @@ fun AltaBecerros(modifier: Modifier = Modifier) {
                             .padding(8.dp) // Espaciado opcional
                             .width(150.dp)
                     ) {
-                        Text(text = "Siguiente")
+                        Text(text = "Enviar")
                     }
 
                 }
@@ -547,11 +576,11 @@ fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
     ).show()
 }
 
-
-@Preview(showSystemUi = true)
-        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-        @Preview(widthDp = 412, heightDp = 917)
-        @Composable
-        private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
-            AltaBecerros(Modifier)
-        }
+//
+//@Preview(showSystemUi = true)
+//        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+//        @Preview(widthDp = 412, heightDp = 917)
+//        @Composable
+//        private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
+//            AltaBecerros(Modifier)
+//        }
