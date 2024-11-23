@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.TextStyle
@@ -46,7 +47,7 @@ fun MenuSecundarioScreen(navController: NavController,modifier: Modifier = Modif
         modifier = modifier
             .requiredWidth(width = 412.dp)
             .requiredHeight(height = 917.dp)
-//            .background(color = Color.White)
+            .background(color = Color.White)
     ) {
         Botones(navController,modifier = modifier)
         Image(
@@ -60,37 +61,37 @@ fun MenuSecundarioScreen(navController: NavController,modifier: Modifier = Modif
                 )
                 .requiredSize(size = 150.dp)
         )
-//        OutlinedButton(
-//            onClick = {navController.navigate(route = appScreens.MenuPrincipalScreen) },
-//            shape = RoundedCornerShape(8.dp),
-//            colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
-//            contentPadding = PaddingValues(all = 12.dp),
-//            border = BorderStroke(1.dp, Color(0xff2c2c2c)),
-//            modifier = Modifier
-//                .align(alignment = Alignment.TopStart)
-//                .offset(
-//                    x = 131.dp,
-//                    y = 800.dp
-//                )
-//                .requiredWidth(width = 150.dp)
-//                .requiredHeight(height = 40.dp),)
- //       {
-//            Row(
-//                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-//                verticalAlignment = Alignment.CenterVertically,
-//                modifier = Modifier
-//                    .requiredWidth(width = 150.dp)
-//                    .requiredHeight(height = 40.dp)
-//            ) {
-//                Text(
-//                    text = "Atrás",
-//                    color = Color(0xfff5f5f5),
-//                    lineHeight = 6.25.em,
-//                    style = TextStyle(
-//                        fontSize = 16.sp)
-//                )
-//            }
-//        }
+        OutlinedButton(
+            onClick = {navController.popBackStack()},
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
+            contentPadding = PaddingValues(all = 12.dp),
+            border = BorderStroke(1.dp, Color(0xFF000000)),
+            modifier = Modifier
+                .align(alignment = Alignment.TopStart)
+                .offset(
+                    x = 131.dp,
+                    y = 800.dp
+                )
+                .requiredWidth(width = 150.dp)
+                .requiredHeight(height = 40.dp),)
+        {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .requiredWidth(width = 150.dp)
+                    .requiredHeight(height = 40.dp)
+            ) {
+                Text(
+                    text = "Atrás",
+                    color = Color(0xfff5f5f5),
+                    lineHeight = 6.25.em,
+                    style = TextStyle(
+                        fontSize = 16.sp)
+                )
+            }
+        }
         Text(
             text = "¿Qué tipo de animal deseas dar de alta?",
             color = Color.Black,
@@ -110,7 +111,10 @@ fun MenuSecundarioScreen(navController: NavController,modifier: Modifier = Modif
 fun Botones(navController: NavController,modifier: Modifier) {
     Column {
         Spacer(modifier = Modifier.padding(16.dp))
-        BtnVaca(modifier = modifier
+
+        BtnVaca(
+            navController = navController,
+            modifier = Modifier
             //.align(alignment = Alignment.TopStart)
             .offset(
                 x = 30.dp,
@@ -126,6 +130,7 @@ fun Botones(navController: NavController,modifier: Modifier) {
                 )
         )
         BtnBecerro(
+            navController = navController,
             modifier = Modifier
 //                .align(alignment = Alignment.TopStart)
                 .offset(
@@ -133,28 +138,11 @@ fun Botones(navController: NavController,modifier: Modifier) {
                     y = 350.dp
                 )
         )
-        BtnAtras(
-            navController = navController,
-            modifier = Modifier
-//                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 131.dp,
-                    y = 800.dp
-                )
-        )
+
     }
 }
 
-@Composable
-fun BtnAtras(navController: NavController,modifier: Modifier) {
-    Button(onClick = {navController.navigate(route = appScreens.MenuPrincipalScreen)},modifier = modifier
-        .requiredWidth(width = 150.dp)
-        .requiredHeight(height = 40.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
-        border = BorderStroke(1.dp, Color(0xFF000000)),
-        shape = RoundedCornerShape(30.dp)){
-    }
-}
+
 
 @Composable
 fun BtnSemental(modifier: Modifier) {
@@ -174,8 +162,9 @@ fun BtnSemental(modifier: Modifier) {
 }
 
 @Composable
-fun BtnVaca(modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+fun BtnVaca(navController: NavController,modifier: Modifier) {
+    Button(onClick = { navController.navigate(route = appScreens.AltaVacasScreen.route) },
+        modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 120.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -193,8 +182,9 @@ fun BtnVaca(modifier: Modifier) {
 }
 
 @Composable
-fun BtnBecerro(modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+fun BtnBecerro(navController: NavController,modifier: Modifier) {
+    Button(onClick = { navController.navigate(route = appScreens.AltaBecerros.route) },
+        modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 120.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -213,8 +203,8 @@ fun BtnBecerro(modifier: Modifier) {
 
 
 
-//@Preview(widthDp = 412, heightDp = 917)
-//@Composable
-//private fun MenuSecundarioScreenPreview() {
-//    MenuSecundarioScreen(NavController,Modifier)
-//}
+@Preview(widthDp = 412, heightDp = 917)
+@Composable
+private fun MenuSecundarioScreenPreview() {
+    MenuSecundarioScreen(navController = NavController(LocalContext.current))
+}

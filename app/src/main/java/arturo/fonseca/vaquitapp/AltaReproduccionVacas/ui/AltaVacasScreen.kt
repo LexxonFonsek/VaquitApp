@@ -1,4 +1,4 @@
-@file:Suppress("NAME_SHADOWING")
+
 
 package arturo.fonseca.vaquitapp.AltaReproduccionVacas.ui
 
@@ -48,9 +48,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
 
 @Composable
-fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modifier) {
+fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
 
         modifier = modifier
@@ -207,7 +208,7 @@ fun AltaVacasScreen(/*navController: NavController,*/ modifier: Modifier = Modif
                 )
                 .wrapContentHeight(align = Alignment.CenterVertically))
         OutlinedButton(
-            onClick = { },
+            onClick = {navController.popBackStack() },
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -716,6 +717,6 @@ fun Raza(modifier: Modifier = Modifier) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AltaVacasScreenPreview() {
-    AltaVacasScreen(Modifier)
+    AltaVacasScreen(navController = NavController(LocalContext.current))
 
 }

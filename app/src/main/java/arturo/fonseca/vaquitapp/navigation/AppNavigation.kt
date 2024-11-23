@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import arturo.fonseca.vaquitapp.AltaReproduccionVacas.ui.AltaVacasScreen
+import arturo.fonseca.vaquitapp.ui.theme.AltaBecerros.ui.AltaBecerros
 import arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui.MenuPrincipalScreen
 import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
 import arturo.fonseca.vaquitapp.ui.theme.registro.ui.Registro
@@ -26,10 +27,13 @@ fun AppNavigation() {
             MenuSecundarioScreen(navController)
         }
         composable(route = appScreens.AltaVacasScreen.route) {
-            AltaVacasScreen()
+            AltaVacasScreen(navController)
         }
         composable(route = appScreens.Registro.route) {
             Registro(navController)
+        }
+        composable(route = appScreens.AltaBecerros.route) {
+            AltaBecerros(navController)
         }
 
 

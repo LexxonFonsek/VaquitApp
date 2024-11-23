@@ -3,11 +3,7 @@ package arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -22,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -32,10 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
-import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
 
 @Composable
 fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifier){
@@ -69,6 +62,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 177.dp
                 ))
         BtnGeneral(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -76,6 +70,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 200.dp
                 ))
         BtnVacas(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -83,6 +78,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 280.dp
                 ))
         BtnToros(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -90,6 +86,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 280.dp
                 ))
         BtnBecerros(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -97,6 +94,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 360.dp
                 ))
         BtnSanidad(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -104,6 +102,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 459.dp
                 ))
         BtnNutricion(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -111,6 +110,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 459.dp
                 ))
         BtnReproduccion(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -118,6 +118,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 539.dp
                 ))
         BtnIngresos(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -125,6 +126,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 638.dp
                 ))
         BtnDestinados(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -132,6 +134,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 638.dp
                 ))
         BtnDescesos(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -139,6 +142,7 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
                     y = 718.dp
                 ))
         BtnVendidos(
+            navController = navController,
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
@@ -191,7 +195,8 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
 
 @Composable
 fun BtnAniadir(navController: NavController,modifier: Modifier) {
-    Button(onClick = {navController.navigate(route = appScreens.MenuSecundarioScreen)}, modifier = modifier
+    Button(onClick = { navController.navigate(route = appScreens.MenuSecundarioScreen.route) },
+        modifier = modifier
         .requiredWidth(352.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -208,7 +213,7 @@ fun BtnAniadir(navController: NavController,modifier: Modifier) {
     }
 }
 @Composable
-fun BtnGeneral(modifier: Modifier) {
+fun BtnGeneral(navController: NavController,modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
@@ -227,7 +232,7 @@ fun BtnGeneral(modifier: Modifier) {
 }
 
 @Composable
-fun BtnVacas(modifier: Modifier) {
+fun BtnVacas(navController: NavController,modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -246,7 +251,7 @@ fun BtnVacas(modifier: Modifier) {
 }
 
 @Composable
-fun BtnToros(modifier: Modifier) {
+fun BtnToros(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -265,7 +270,7 @@ fun BtnToros(modifier: Modifier) {
 }
 
 @Composable
-fun BtnBecerros(modifier: Modifier) {
+fun BtnBecerros(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
@@ -284,7 +289,7 @@ fun BtnBecerros(modifier: Modifier) {
 }
 
 @Composable
-fun BtnSanidad(modifier: Modifier) {
+fun BtnSanidad(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -303,7 +308,7 @@ fun BtnSanidad(modifier: Modifier) {
 }
 
 @Composable
-fun BtnNutricion(modifier: Modifier) {
+fun BtnNutricion(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -322,7 +327,7 @@ fun BtnNutricion(modifier: Modifier) {
 }
 
 @Composable
-fun BtnReproduccion(modifier: Modifier) {
+fun BtnReproduccion(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
@@ -341,7 +346,7 @@ fun BtnReproduccion(modifier: Modifier) {
 }
 
 @Composable
-fun BtnIngresos(modifier: Modifier) {
+fun BtnIngresos(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -360,7 +365,7 @@ fun BtnIngresos(modifier: Modifier) {
 }
 
 @Composable
-fun BtnDestinados(modifier: Modifier) {
+fun BtnDestinados(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -379,7 +384,7 @@ fun BtnDestinados(modifier: Modifier) {
 }
 
 @Composable
-fun BtnDescesos(modifier: Modifier) {
+fun BtnDescesos(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
@@ -398,7 +403,7 @@ fun BtnDescesos(modifier: Modifier) {
 }
 
 @Composable
-fun BtnVendidos(modifier: Modifier) {
+fun BtnVendidos(navController: NavController, modifier: Modifier) {
     Button(onClick = { }, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
