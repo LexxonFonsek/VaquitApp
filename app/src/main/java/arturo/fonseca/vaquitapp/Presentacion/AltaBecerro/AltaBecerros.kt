@@ -27,13 +27,12 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import arturo.fonseca.vaquitapp.R
 import java.util.Calendar
 import androidx.compose.material3.Icon as Icon
 
 @Composable
-fun AltaBecerros(navController: NavController,modifier: Modifier = Modifier) {
+fun AltaBecerros(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier
             .requiredWidth(width = 412.dp)
@@ -497,7 +496,7 @@ fun AltaBecerros(navController: NavController,modifier: Modifier = Modifier) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Button(
-                        onClick = { navController.popBackStack() },
+                        onClick = { /* Acción para botón Atrás */ },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
                             contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
@@ -554,5 +553,5 @@ fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
         @Preview(widthDp = 412, heightDp = 917)
         @Composable
         private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
-            AltaBecerros(navController = NavController(LocalContext.current))
+            AltaBecerros(Modifier)
         }
