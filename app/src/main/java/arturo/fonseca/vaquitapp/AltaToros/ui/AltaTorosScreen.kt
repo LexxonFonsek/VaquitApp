@@ -235,7 +235,7 @@ fun AltaVacasScreen(modifier: Modifier = Modifier) {
                     .requiredWidth(width = 150.dp)
             ) {
                 Text(
-                    text = "Siguiente",
+                    text = "Guardar",
                     color = Color(0xfff5f5f5),
                     lineHeight = 6.25.em,
                     style = TextStyle(
