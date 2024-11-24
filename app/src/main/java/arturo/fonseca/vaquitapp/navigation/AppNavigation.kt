@@ -11,6 +11,7 @@ import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
 import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
 import arturo.fonseca.vaquitapp.Presentacion.Secundario.MenuSecundarioScreen
 import arturo.fonseca.vaquitapp.Presentacion.Registro.Registro
+import arturo.fonseca.vaquitapp.SplashScreen
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,7 +23,10 @@ fun AppNavigation(navController: NavController,
                   db: FirebaseFirestore
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = appScreens.Login1.route) {
+    NavHost(navController = navController, startDestination = appScreens.SplashScreen.route) {
+        composable(route = appScreens.SplashScreen.route) {
+            SplashScreen(navController)
+        }
         composable(route = appScreens.Login1.route) {
             Login1(auth, navController)
         }
@@ -41,6 +45,7 @@ fun AppNavigation(navController: NavController,
         composable(route = appScreens.AltaBecerros.route) {
             AltaBecerros(db ,navController)
         }
+
 
 
     }

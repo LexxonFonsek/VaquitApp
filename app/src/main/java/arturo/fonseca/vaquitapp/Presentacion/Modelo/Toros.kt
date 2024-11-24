@@ -6,8 +6,9 @@ data class Toros(
     val raza: String? = null,
     val nacimiento: String? = null,
     val procedencia: String? = null,
+    val cornamenta: String? = null,
     val siniiga: String? = null,
-    val campaña: String? = null,
+    val campania: String? = null,
     val hierro: String? = null
 
 )

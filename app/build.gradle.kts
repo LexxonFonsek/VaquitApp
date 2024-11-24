@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose.android)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
+
+    implementation(libs.firebase.crashlytics.buildtools)
     val nav_version = "2.8.0"
     val material_version = "1.7.5"
     val lifecycle_version = "2.6.2"

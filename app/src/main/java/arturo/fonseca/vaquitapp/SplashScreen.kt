@@ -15,19 +15,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import arturo.fonseca.vaquitapp.navigation.AppScreen
+import arturo.fonseca.vaquitapp.navigation.appScreens
 import kotlinx.coroutines.delay
 import org.checkerframework.checker.units.qual.C
 
 @Composable
-fun SplashScreen(navController: NavHostController){
+fun SplashScreen(navController: NavController){
     LaunchedEffect(key1 = true) {
-        delay(5000)
+        delay(10000)
         navController.popBackStack()
-        navController.navigate(AppScreen.MainScreen.route)
+        navController.navigate(appScreens.Login1.route)
     }
-    navController.navigate(AppScreen.MainScreen.route)
+    navController.navigate(appScreens.Login1.route)
     Splash()
 }
 
