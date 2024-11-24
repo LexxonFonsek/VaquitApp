@@ -1,22 +1,26 @@
-package arturo.fonseca.vaquitapp.Presentacion.AltaBecerro
+package arturo.fonseca.vaquitapp.ui.theme.AltaBecerros.ui
 
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.text.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.rememberBottomAppBarState
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -24,27 +28,26 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import java.util.Calendar
-
+import androidx.compose.material3.Icon as Icon
 
 @Composable
-fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
+fun AltaBecerros(navController: NavController) {
     var nombre by remember { mutableStateOf("") }
     var sexo by remember { mutableStateOf("") }
-    val nacimiento by remember { mutableStateOf("") }
+    var nacimiento by remember { mutableStateOf("") }
     var peso by remember { mutableStateOf("") }
     var madre by remember { mutableStateOf("") }
     var padre by remember { mutableStateOf("") }
     var embrion by remember { mutableStateOf("") }
     var procedencia by remember { mutableStateOf("") }
     var siniiga by remember { mutableStateOf("") }
-    var campania by remember { mutableStateOf("") }
+    var campaña by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .requiredWidth(width = 412.dp)
@@ -127,10 +130,10 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
 
                             .width(200.dp)
                     ) {
-                        OutlinedTextField(
-                            value = nombre,
+                        TextField(
+                            value = "",
                             onValueChange = {nombre = it},
-                            label = { Text("E.j: Juan Perez") },
+                            placeholder = { Text("E.j: Juan Perez") },
                             modifier = Modifier
                                 .height(50.dp)
                         )
@@ -154,10 +157,10 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                             .clip(shape = RoundedCornerShape(5.dp))
                             .width(200.dp)
                     ) {
-                        OutlinedTextField(
-                            value = sexo,
+                        TextField(
+                            value = "",
                             onValueChange = {sexo = it},
-                            label = { Text("E.j: Blanco") },
+                            placeholder = { Text("E.j: Blanco") },
                             modifier = Modifier
                                 .height(50.dp)
                         )
@@ -194,7 +197,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
             var selectedDate by remember { mutableStateOf("") } // Estado para guardar la fecha seleccionada
             val context = LocalContext.current
             // Abrir el selector de fecha
-            var datePickerDialog = DatePickerDialog(
+            val datePickerDialog = DatePickerDialog(
                 context,
                 { _, year, month, dayOfMonth ->
                     selectedDate = "$dayOfMonth/${month + 1}/$year"
@@ -219,6 +222,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     )
                     .clip(RoundedCornerShape(5.dp))
                     .fillMaxWidth()
+                    .padding(12.dp) // Margen interno dentro del cuadro
             ) {
 
                 // Caja que simula el campo de fecha con un clic
@@ -232,10 +236,11 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                         }
                         .padding(10.dp)
                         .background(Color.White, shape = RoundedCornerShape(5.dp))
-
+                        .border(1.dp, Color.LightGray, RoundedCornerShape(5.dp))
                 ) {
                     Text(
                         text = if (selectedDate.isEmpty()) "Seleccionar fecha" else selectedDate,
+                        color = if (selectedDate.isEmpty()) Color.Gray else Color.Black,
                         modifier = Modifier.align(Alignment.CenterStart)
                     )
 
@@ -243,104 +248,104 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
             }
 
 
-            Text(
-                "Peso al nacer",
-                color = Color(0xFF2E3036),
-                fontSize = 12.sp,
-                modifier = Modifier
-                    .padding(bottom = 7.dp,)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 18.dp,)
-                    .border(
-                        width = 1.dp,
-                        color = Color.Black,
-                        shape = RoundedCornerShape(5.dp)
-                    )
-                    .clip(shape = RoundedCornerShape(5.dp))
-                    .fillMaxWidth()
-            ) {
-                OutlinedTextField(
-                    value = peso,
-                    onValueChange = {peso = it},
-                    label = { Text("E.j: 10kg") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-
-            }
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 4.dp,)
-                    .fillMaxWidth()
-            ) {
                 Text(
-                    "Madre",
+                    "Peso al nacer",
                     color = Color(0xFF2E3036),
                     fontSize = 12.sp,
                     modifier = Modifier
-                        .padding(end = 150.dp,)
+                        .padding(bottom = 7.dp,)
                 )
-                Text(
-                    "Padre",
-                    color = Color(0xFF2E3036),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 12.dp,)
-                    .fillMaxWidth()
-            ) {
                 Column(
                     modifier = Modifier
+                        .padding(bottom = 18.dp,)
                         .border(
                             width = 1.dp,
                             color = Color.Black,
                             shape = RoundedCornerShape(5.dp)
                         )
                         .clip(shape = RoundedCornerShape(5.dp))
-                        .width(163.dp)
+                        .fillMaxWidth()
                 ) {
-                    OutlinedTextField(
-                        value = madre,
-                        onValueChange = {madre = it},
-                        label = { Text("E.j: Madre") },
-                        modifier = Modifier.fillMaxWidth()
+                    TextField(
+                        value = "",
+                        onValueChange = {peso = it},
+                        placeholder = { Text("E.j: 10kg") },
+                        modifier = Modifier
+                            .fillMaxWidth()
                     )
 
                 }
-                Column(
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(162.dp)
+                        .padding(bottom = 7.dp,)
+                        .fillMaxWidth()
                 ) {
-                    OutlinedTextField(
-                        value = padre,
-                        onValueChange = {padre = it},
-                        label = { Text("E.j: Padre") },
-                        modifier = Modifier.fillMaxWidth()
+                    Text(
+                        "Madre",
+                        color = Color(0xFF2E3036),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .padding(end = 150.dp,)
+                    )
+                    Text(
+                        "Padre",
+                        color = Color(0xFF2E3036),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
                     )
                 }
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 3.dp,)
-                    .fillMaxWidth()
-            ) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(bottom = 12.dp,)
+                        .fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(5.dp)
+                            )
+                            .clip(shape = RoundedCornerShape(5.dp))
+                            .width(163.dp)
+                    ) {
+                        TextField(
+                            value = "",
+                            onValueChange = {madre = it},
+                            placeholder = { Text("E.j: Madre") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                    }
+                    Column(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(5.dp)
+                            )
+                            .clip(shape = RoundedCornerShape(5.dp))
+                            .width(162.dp)
+                    ) {
+                        TextField(
+                            value = "",
+                            onValueChange = {padre = it},
+                            placeholder = { Text("E.j: Padre") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(bottom = 5.dp,)
+                        .fillMaxWidth()
+                ) {
 //                CoilImage(
 //                    imageModel = {"https://i.imgur.com/1tMFzp8.png"},
 //                    imageOptions = ImageOptions(contentScale = ContentScale.Crop),
@@ -349,197 +354,207 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
 //                        .width(20.dp)
 //                        .height(20.dp)
 //                )
-                var state by remember { mutableStateOf(true) }
+                    var state by remember { mutableStateOf(true) }
 
 
-                RadioButton(
-                    selected = state,
-                    onClick = { state = true },
-                    modifier = Modifier.semantics {
-                        contentDescription = "Localized Description"
-                    }
-                )
-                Text(
-                    "Inseminación artificial",
-                    color = Color(0xFF000000),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(end = 4.dp,)
-                )
-
-                RadioButton(
-                    selected = !state,
-                    onClick = { state = true },
-                    modifier = Modifier.semantics {
-                        contentDescription = "Localized Description"
-                    }
-                )
-
-                Text(
-                    "Desconozco Padres",
-                    color = Color(0xFF000000),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(end = 1.dp,)
-                )
-            }
-            Text(
-                "Información del semen/embrión",
-                color = Color(0xFF2E3036),
-                fontSize = 12.sp,
-                modifier = Modifier
-                    .padding(bottom = 8.dp,)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 10.dp,)
-                    .border(
-                        width = 1.dp,
-                        color = Color.Black,
-                        shape = RoundedCornerShape(5.dp)
+                    RadioButton(
+                        selected = state,
+                        onClick = { state = true },
+                        modifier = Modifier.semantics {
+                            contentDescription = "Localized Description"
+                        }
                     )
-                    .clip(shape = RoundedCornerShape(5.dp))
-                    .fillMaxWidth()
-            ) {
-                OutlinedTextField(
-                    value = embrion,
-                    onValueChange = {embrion = it},
-                    label = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-            }
-            Text(
-                "Procedencia",
-                color = Color(0xFF2E3036),
-                fontSize = 12.sp,
-                modifier = Modifier
-                    .padding(bottom = 8.dp,)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 20.dp,)
-                    .border(
-                        width = 1.dp,
-                        color = Color.Black,
-                        shape = RoundedCornerShape(5.dp)
-                    )
-                    .clip(shape = RoundedCornerShape(5.dp))
-                    .fillMaxWidth()
-            ) {
-                OutlinedTextField(
-                    value = procedencia,
-                    onValueChange = {procedencia = it},
-                    label = { Text("Ej.: Rancho “La Loma”, Guachinango") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 4.dp,)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    "SIINIGA",
-                    color = Color(0xFF2E3036),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(end = 150.dp,)
-                )
-                Text(
-                    "Campaña",
-                    color = Color(0xFF2E3036),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 12.dp,)
-                    .fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(163.dp)
-                ) {
-                    OutlinedTextField(
-                        value = siniiga,
-                        onValueChange = {siniiga = it},
-                        label = { Text("E.j: Blanco", fontSize = 15.sp) },
+                    Text(
+                        "Inseminación artificial",
+                        color = Color(0xFF000000),
+                        fontSize = 12.sp,
                         modifier = Modifier
-                            .height(50.dp),
-                        textStyle = TextStyle(fontSize = 15.sp)
+                            .padding(end = 4.dp,)
                     )
 
+                    RadioButton(
+                        selected = !state,
+                        onClick = { state = true },
+                        modifier = Modifier.semantics {
+                            contentDescription = "Localized Description"
+                        }
+                    )
+
+                    Text(
+                        "Desconozco Padres",
+                        color = Color(0xFF000000),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .padding(end = 1.dp,)
+                    )
                 }
+                Text(
+                    "Información del semen/embrión",
+                    color = Color(0xFF2E3036),
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .padding(bottom = 8.dp,)
+                )
                 Column(
                     modifier = Modifier
+                        .padding(bottom = 20.dp,)
                         .border(
                             width = 1.dp,
                             color = Color.Black,
                             shape = RoundedCornerShape(5.dp)
                         )
                         .clip(shape = RoundedCornerShape(5.dp))
-                        .width(162.dp)
+                        .fillMaxWidth()
                 ) {
-                    OutlinedTextField(
-                        value = campania,
-                        onValueChange = {campania = it},
-                        label = { Text("E.j: ") },
+                    TextField(
+                        value = "",
+                        onValueChange = {embrion = it},
+                        placeholder = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
                         modifier = Modifier.fillMaxWidth()
-                            .height(50.dp)
+                    )
+
+                }
+                Text(
+                    "Procedencia",
+                    color = Color(0xFF2E3036),
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .padding(bottom = 8.dp,)
+                )
+                Column(
+                    modifier = Modifier
+                        .padding(bottom = 20.dp,)
+                        .border(
+                            width = 1.dp,
+                            color = Color.Black,
+                            shape = RoundedCornerShape(5.dp)
+                        )
+                        .clip(shape = RoundedCornerShape(5.dp))
+                        .fillMaxWidth()
+                ) {
+                    TextField(
+                        value = "",
+                        onValueChange = {procedencia = it},
+                        placeholder = { Text("Ej.: Rancho “La Loma”, Guachinango") },
+                        modifier = Modifier
+                            .fillMaxWidth()
                     )
                 }
-            }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Button(
-                    onClick = {navController.navigate(appScreens.MenuSecundarioScreen.route)},
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Black, // Fondo negro
-                        contentColor = Color.White    // Texto blanco
-                    ),
-                    shape = RoundedCornerShape(16.dp), // Bordes redondeados
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(8.dp) // Espaciado opcional
-                        .width(150.dp)
+                        .padding(bottom = 7.dp,)
+                        .fillMaxWidth()
                 ) {
-                    Text(text = "Atrás")
+                    Text(
+                        "SIINIGA",
+                        color = Color(0xFF2E3036),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .padding(end = 150.dp,)
+                    )
+                    Text(
+                        "Campaña",
+                        color = Color(0xFF2E3036),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
                 }
-                Button(
-                    onClick = {
-                        saveBecerro(db, Becerros(nombre, sexo, nacimiento, peso, madre, padre, embrion, procedencia, siniiga, campania))
-
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Black, // Fondo negro
-                        contentColor = Color.White    // Texto blanco
-                    ),
-                    shape = RoundedCornerShape(16.dp), // Bordes redondeados
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(8.dp) // Espaciado opcional
-                        .width(150.dp)
+                        .padding(bottom = 12.dp,)
+                        .fillMaxWidth()
                 ) {
-                    Text(text = "Enviar")
-                }
+                    Column(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(5.dp)
+                            )
+                            .clip(shape = RoundedCornerShape(5.dp))
+                            .width(163.dp)
+                    ) {
+                        TextField(
+                            value = "",
+                            onValueChange = {siniiga = it},
+                            placeholder = { Text("E.j: Blanco", fontSize = 15.sp) },
+                            modifier = Modifier
+                                .height(50.dp),
+                            textStyle = TextStyle(fontSize = 15.sp)
+                        )
 
+                    }
+                    Column(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(5.dp)
+                            )
+                            .clip(shape = RoundedCornerShape(5.dp))
+                            .width(162.dp)
+                    ) {
+                        TextField(
+                            value = "",
+                            onValueChange = {campaña = it},
+                            placeholder = { Text("E.j: ") },
+                            modifier = Modifier.fillMaxWidth()
+                                .height(50.dp)
+                        )
+                    }
+                }
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Button(
+                        onClick = {navController.navigate(appScreens.MenuSecundario.route)},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
+                            contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
+                        ),
+                        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Bordes redondeados
+                        modifier = Modifier
+                            .padding(8.dp) // Espaciado opcional
+                            .width(150.dp)
+                    ) {
+                        Text(text = "Atrás")
+                    }
+                    Button(
+                        onClick = {
+                            val becerro = Becerros(
+                            nombre = nombre,
+                            sexo = sexo,
+                            nacimiento = nacimiento,
+                            peso = peso,
+                            madre = madre,
+                            padre = padre,
+                                embrion = embrion,
+                            procedencia = procedencia,
+                                siniiga = siniiga,
+                                campaña = campaña
+                        )
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
+                            contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
+                        ),
+                        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Bordes redondeados
+                        modifier = Modifier
+                            .padding(8.dp) // Espaciado opcional
+                            .width(150.dp)
+                    ) {
+                        Text(text = "Enviar")
+                    }
+
+                }
             }
         }
     }
-}
 
 
 
@@ -562,24 +577,10 @@ fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
 }
 
 //
-fun saveBecerro(db: FirebaseFirestore, becerro: Becerros){
-    db.collection("becerros")
-        .add(becerro)
-        .addOnSuccessListener { documentReference ->
-            Log.d("Vaquitapp", "SUCCESS added with ID: ${documentReference.id}")
-        }
-        .addOnFailureListener {
-            Log.w("Vaquitapp", "Error adding document", it)
-        }
-        .addOnCompleteListener {
-            Log.d("Vaquitapp", "Complete")
-        }
-
-}
 //@Preview(showSystemUi = true)
-//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-//@Preview(widthDp = 412, heightDp = 917)
-//@Composable
-//private fun AltaBecerrosPreview() {
-//    AltaBecerros( navController = NavController(LocalContext.current))
-//}
+//        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+//        @Preview(widthDp = 412, heightDp = 917)
+//        @Composable
+//        private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
+//            AltaBecerros(Modifier)
+//        }
