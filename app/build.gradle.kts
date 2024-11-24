@@ -52,7 +52,12 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.constraintlayout.compose.android)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
     val nav_version = "2.8.0"
+    val material_version = "1.7.5"
+    val lifecycle_version = "2.6.2"
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -64,6 +69,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("io.coil-kt.coil3:coil-compose:3.0.1")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.1")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     //implementation("com.airbnb.android:lottie:$lottieVersion")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -75,6 +81,11 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation ("androidx.compose.material:material:$material_version")
+    // Needed to get a view model reference in Jetpack Compose
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies

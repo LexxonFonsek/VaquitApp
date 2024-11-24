@@ -1,12 +1,11 @@
 @file:Suppress("NAME_SHADOWING")
 
-package arturo.fonseca.vaquitapp.ui.theme.AltaVacas.ui
+package arturo.fonseca.vaquitapp.Presentacion.AltaVacas
 
 import android.content.res.Configuration
 import android.icu.util.Calendar
 import android.widget.DatePicker
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -50,15 +48,27 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
-import arturo.fonseca.vaquitapp.R
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Vacas
+import arturo.fonseca.vaquitapp.navigation.appScreens
 
 @Composable
-fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun AltaVacasScreen(navController: NavController) {
+    var nombre by remember { mutableStateOf("") }
+    var color by remember { mutableStateOf("") }
+    var raza by remember { mutableStateOf("") }
+    var cruza by remember { mutableStateOf("") }
+    var foto by remember { mutableStateOf("") }
+    var hierro by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf("") }
+    var procedencia by remember { mutableStateOf("") }
+    var siniiga by remember { mutableStateOf("") }
+    var campania by remember { mutableStateOf("") }
+
     Box(
 
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
 //            .requiredWidth(width = 412.dp)
 //            .requiredHeight(height = 917.dp)
@@ -138,7 +148,10 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
         Campania(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
-        )
+                .offset(
+                    x = 20.dp,
+                    y = 489.dp
+                ))
         Text(
             text = "Foto de la vaca",
             color = Color.Black,
@@ -209,7 +222,7 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
                 )
                 .wrapContentHeight(align = Alignment.CenterVertically))
         OutlinedButton(
-            onClick = {navController.popBackStack() },
+            onClick = {navController.navigate(route = appScreens.MenuSecundario.route)},
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -239,7 +252,20 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
             }
         }
         OutlinedButton(
-            onClick = {},
+            onClick = {
+                val vaca = Vacas(
+                    nombre = nombre,
+                    color = color,
+                    raza = raza,
+                    cruza = cruza,
+                    foto = foto,
+                    hierro = hierro,
+                    nacimiento = date,
+                    procedencia = procedencia,
+                    siniiga = siniiga,
+                    campania = campania
+                )
+            },
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xff2c2c2c)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -329,17 +355,14 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
                         fontSize = 16.sp))
             }
         }
-        Image(
-            painter = painterResource(id = R.drawable.logo), //Imagen del logo Vaquitapp
-            contentDescription = "LogoVaquitApp",
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 320.dp,
-                    y = 50.dp
-                )
-                .requiredSize(size = 50.dp)
-        )
+//        Icon(
+//            painter = painterResource(id = R.drawable.menu),
+//            contentDescription = "menu",
+//            tint = Color(0xff1d1b20),
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(x = 32.dp,
+//                    y = 54.dp))
         FechaNac(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
@@ -354,7 +377,7 @@ fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier)
 }
 
 @Composable
-fun FechaNac(modifier: Modifier) {
+fun FechaNac( modifier: Modifier) {
     val year: Int
     val month: Int
     val day: Int
@@ -365,7 +388,7 @@ fun FechaNac(modifier: Modifier) {
     day = calendar.get(Calendar.DAY_OF_MONTH)
 
     val context = LocalContext.current
-    val date = remember { mutableStateOf("") }
+    var date = remember { mutableStateOf("") }
     val datePickerDialog = android.app.DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
@@ -374,7 +397,7 @@ fun FechaNac(modifier: Modifier) {
 
     )
     Column(
-        modifier = modifier
+        modifier = Modifier
             .requiredWidth(width = 348.dp)
             .requiredHeight(height = 70.dp)
             .fillMaxSize(),
@@ -395,15 +418,16 @@ fun FechaNac(modifier: Modifier) {
 }
 
 @Composable
-fun Siniiga(modifier: Modifier) {
+fun Siniiga( modifier: Modifier) {
     val siNo = remember { mutableStateOf(true) }
-    var text by remember {
+
+    var siniiga by remember {
         mutableStateOf("")
     }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        modifier = modifier
+        modifier = Modifier
             .requiredWidth(width = 348.dp)
             .requiredHeight(height = 56.dp)
             .clip(shape = RoundedCornerShape(5.dp))
@@ -413,8 +437,8 @@ fun Siniiga(modifier: Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween // Space elements evenly
         ) {
             TextField(
-                value = text, // Remember text state
-                onValueChange = { text = it },
+                value = siniiga, // Remember text state
+                onValueChange = { siniiga = it },
                 label = { Text("Número SINIIGA") },
                 placeholder = { Text("Agrega número de 10 digitos.") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -453,11 +477,11 @@ fun Cruza(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var cruza by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it },
+            value = cruza, onValueChange = { cruza = it },
             label = { Text("Cruza") },
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Simmental") },
@@ -484,11 +508,11 @@ fun ColorVac(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var color by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it},
+            value = color, onValueChange = { color = it},
             label = {Text("Color")},
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Pinta") },
@@ -508,53 +532,20 @@ fun ColorVac(modifier: Modifier) {
 fun Campania(modifier: Modifier) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize()
     )
     {
-        var text by remember {
+        var campania by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = {text = it},
+            value = campania, onValueChange = {campania = it},
             label = {Text("Número de Campaña")},
-            modifier = modifier
-                .offset(
-                x = 20.dp,
-                y = 489.dp
-            )
-                .requiredWidth(width = 200.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-
-                .fillMaxSize(),
-            placeholder = { Text("") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
-            singleLine = true, //No se amplia al darle enter en eñl e teclado
-            maxLines = 1,
-            colors = TextFieldDefaults.colors(
-                Color(0xFF000000),
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            )
-        )
-    }
-    Column (
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
-    ) {
-        var text by remember {
-            mutableStateOf("")
-        }
-        TextField(
-            value = text, onValueChange = {text = it},
-            label = {Text("Peso en KG")},
-            modifier = modifier
-                .offset(
-                x = 240.dp,
-                y = 489.dp
-            )
-                .requiredWidth(width = 127.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-,
+            //modifier = modifier.fillMaxSize(),
             placeholder = { Text("") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en eñl e teclado
@@ -570,22 +561,21 @@ fun Campania(modifier: Modifier) {
 
 @Composable
 fun Procedencia(modifier: Modifier) {
-    Column (
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
-    )
+    Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize())
     {
 
-        var text by remember {
+        var procedencia by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = {text = it},
+            value = procedencia, onValueChange = {procedencia = it},
             label = {Text("Lugar de procedencia")},
-            modifier = modifier
-                .requiredWidth(width = 348.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-                .fillMaxSize(),
+            //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ej: Rancho La Loma") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en el teclado
@@ -605,19 +595,19 @@ fun Procedencia(modifier: Modifier) {
 @Composable
 fun Cornamenta(modifier: Modifier) {
     Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize()
     )
     {
-        var text by remember {
+        var cornamenta by remember {
             mutableStateOf("")
         }
         TextField(
-            modifier = modifier
-                .requiredWidth(width = 348.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-                .fillMaxSize(),
-            value = text, onValueChange = {text = it},
+            //modifier = modifier.fillMaxSize(),
+            value = cornamenta, onValueChange = {cornamenta = it},
             label = {Text("Cornamenta")},
             placeholder = { Text("") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
@@ -646,10 +636,10 @@ fun TxtNombre(modifier: Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var nombre by remember {
             mutableStateOf("")
         }
-        TextField(value = text, onValueChange = {text = it},
+        TextField(value = nombre, onValueChange = {nombre = it},
             label = {Text("Nombre")},
             //modifier = modifier.fillMaxSize(),
             placeholder = {Text("Ejemplo: Lola")},
@@ -679,11 +669,11 @@ fun Raza(modifier: Modifier = Modifier) {
             .fillMaxSize()
     )
     {
-        var text by remember {
+        var raza by remember {
             mutableStateOf("")
         }
         TextField(
-            value = text, onValueChange = { text = it },
+            value = raza, onValueChange = { raza = it },
             label = { Text("Raza") },
             //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ejemplo: Holstein") },
