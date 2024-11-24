@@ -36,7 +36,7 @@ import java.util.Calendar
 import androidx.compose.material3.Icon as Icon
 
 @Composable
-fun AltaBecerros(navController: NavController) {
+fun AltaBecerros(modifier: Modifier = Modifier) {
     var nombre by remember { mutableStateOf("") }
     var sexo by remember { mutableStateOf("") }
     var nacimiento by remember { mutableStateOf("") }
@@ -512,7 +512,7 @@ fun AltaBecerros(navController: NavController) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Button(
-                        onClick = {navController.navigate(appScreens.MenuSecundario.route)},
+                        onClick = {},
                         colors = ButtonDefaults.buttonColors(
                             containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
                             contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
@@ -536,7 +536,7 @@ fun AltaBecerros(navController: NavController) {
                                 embrion = embrion,
                             procedencia = procedencia,
                                 siniiga = siniiga,
-                                campaña = campaña
+                               // campaña = campaña,
                         )
                         },
                         colors = ButtonDefaults.buttonColors(
@@ -576,11 +576,13 @@ fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
     ).show()
 }
 
-//
+
+
 //@Preview(showSystemUi = true)
-//        @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-//        @Preview(widthDp = 412, heightDp = 917)
-//        @Composable
-//        private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
-//            AltaBecerros(Modifier)
-//        }
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Preview(widthDp = 412, heightDp = 917)
+@Composable
+private fun AltaBecerrosPreview(modifier: Modifier = Modifier) {
+AltaBecerros(Modifier)
+}
+
