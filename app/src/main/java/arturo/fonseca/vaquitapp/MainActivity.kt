@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
         } else {
             val currentUser = auth.currentUser
             if (currentUser != null) {
-                navController.navigate(appScreens.Home.route) // Assuming 'appScreens.Home.route' is your home screen route
+                navController.navigate(appScreens.MenuPrincipalScreen.route) // Assuming 'appScreens.Home.route' is your home screen route
                 Log.i("Vaquitapp", "Login Exitoso!!!!!")
             } else {
                 // Navigate to the login screen if the user is not logged in

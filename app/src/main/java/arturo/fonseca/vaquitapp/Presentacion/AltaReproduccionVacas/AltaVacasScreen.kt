@@ -1,13 +1,10 @@
 
-
-@file:Suppress("NAME_SHADOWING")
-package arturo.fonseca.vaquitapp.ActualizarAnimal.ui
+package arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas
 
 import android.content.res.Configuration
 import android.icu.util.Calendar
 import android.widget.DatePicker
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -51,12 +47,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
-import arturo.fonseca.vaquitapp.R
 
 @Composable
-fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun AltaVacasScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
 
         modifier = modifier
@@ -73,6 +67,16 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
                     x = 20.dp,
                     y = 560.dp
                 ))
+//        Image(
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(x = 297.dp,
+//                    y = 508.dp))
+//        Image(
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(x = 301.dp,
+//                    y = 107.dp))
         TxtNombre(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
@@ -129,7 +133,10 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
         Campania(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
-        )
+                .offset(
+                    x = 20.dp,
+                    y = 489.dp
+                ))
         Text(
             text = "Foto de la vaca",
             color = Color.Black,
@@ -156,8 +163,38 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
                     y = 190.dp
                 )
                 .wrapContentHeight(align = Alignment.CenterVertically))
+//        Text(
+//            text = "¿Tiene SIINIGA?",
+//            color = Color.Black,
+//            lineHeight = 2.em,
+//            style = TextStyle(
+//                fontSize = 10.sp),
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(
+//                    x = 290.dp,
+//                    y = 420.dp
+//                )
+//                .requiredWidth(width = 70.dp)
+//                .requiredHeight(height = 23.dp)
+//                .wrapContentHeight(align = Alignment.CenterVertically))
+//        Switch(
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(
+//                    x = 295.dp,
+//                    y = 430.dp
+//                ))
+//        Image(
+//            painter = painterResource(id = R.drawable.vaquitappv1png3),
+//            contentDescription = "VaquitAppV1png 3",
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(x = 331.dp,
+//                    y = 38.dp)
+//                .requiredSize(size = 50.dp))
         Text(
-            text = "Actualizar Informacion",
+            text = "Alta Vacas",
             color = Color.Black,
             textAlign = TextAlign.Center,
             lineHeight = 4.em,
@@ -165,7 +202,7 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
                 .offset(
-                    x = 50.dp,
+                    x = 146.dp,
                     y = 30.dp
                 )
                 .wrapContentHeight(align = Alignment.CenterVertically))
@@ -221,7 +258,7 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
                     .requiredWidth(width = 150.dp)
             ) {
                 Text(
-                    text = "Guardar",
+                    text = "Siguiente",
                     color = Color(0xfff5f5f5),
                     lineHeight = 6.25.em,
                     style = TextStyle(
@@ -252,7 +289,7 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
                     .requiredHeight(height = 40.dp)
             ) {
                 Text(
-                    text = "Editar",
+                    text = "Añadir",
                     color = Color(0xfff5f5f5),
                     lineHeight = 6.25.em,
                     style = TextStyle(
@@ -283,24 +320,21 @@ fun ActualizarAnimalScreen(navController: NavController, modifier: Modifier = Mo
                     .requiredHeight(height = 40.dp)
             ) {
                 Text(
-                    text = "Editar",
+                    text = "Añadir",
                     color = Color(0xfff5f5f5),
                     lineHeight = 6.25.em,
                     style = TextStyle(
                         fontSize = 16.sp))
             }
         }
-        Image(
-            painter = painterResource(id = R.drawable.logo), //Imagen del logo Vaquitapp
-            contentDescription = "LogoVaquitApp",
-            modifier = Modifier
-                .align(alignment = Alignment.TopStart)
-                .offset(
-                    x = 320.dp,
-                    y = 50.dp
-                )
-                .requiredSize(size = 50.dp)
-        )
+//        Icon(
+//            painter = painterResource(id = R.drawable.menu),
+//            contentDescription = "menu",
+//            tint = Color(0xff1d1b20),
+//            modifier = Modifier
+//                .align(alignment = Alignment.TopStart)
+//                .offset(x = 32.dp,
+//                    y = 54.dp))
         FechaNac(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart)
@@ -469,6 +503,11 @@ fun ColorVac(modifier: Modifier) {
 fun Campania(modifier: Modifier) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize()
     )
     {
         var text by remember {
@@ -477,45 +516,7 @@ fun Campania(modifier: Modifier) {
         TextField(
             value = text, onValueChange = {text = it},
             label = {Text("Número de Campaña")},
-            modifier = modifier
-                .offset(
-                    x = 20.dp,
-                    y = 489.dp
-                )
-                .requiredWidth(width = 200.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-
-                .fillMaxSize(),
-            placeholder = { Text("") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
-            singleLine = true, //No se amplia al darle enter en eñl e teclado
-            maxLines = 1,
-            colors = TextFieldDefaults.colors(
-                Color(0xFF000000),
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            )
-        )
-    }
-    Column (
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
-    ) {
-        var text by remember {
-            mutableStateOf("")
-        }
-        TextField(
-            value = text, onValueChange = {text = it},
-            label = {Text("Peso en KG")},
-            modifier = modifier
-                .offset(
-                    x = 240.dp,
-                    y = 489.dp
-                )
-                .requiredWidth(width = 127.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-            ,
+            //modifier = modifier.fillMaxSize(),
             placeholder = { Text("") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en eñl e teclado
@@ -531,9 +532,12 @@ fun Campania(modifier: Modifier) {
 
 @Composable
 fun Procedencia(modifier: Modifier) {
-    Column (
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
-    )
+    Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize())
     {
 
         var text by remember {
@@ -542,11 +546,7 @@ fun Procedencia(modifier: Modifier) {
         TextField(
             value = text, onValueChange = {text = it},
             label = {Text("Lugar de procedencia")},
-            modifier = modifier
-                .requiredWidth(width = 348.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-                .fillMaxSize(),
+            //modifier = modifier.fillMaxSize(),
             placeholder = { Text("Ej: Rancho La Loma") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text), //Tipo de edit text
             singleLine = true, //No se amplia al darle enter en el teclado
@@ -566,18 +566,18 @@ fun Procedencia(modifier: Modifier) {
 @Composable
 fun Cornamenta(modifier: Modifier) {
     Column (verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-
-        )
+        modifier = modifier
+            .requiredWidth(width = 348.dp)
+            .requiredHeight(height = 56.dp)
+            .clip(shape = RoundedCornerShape(5.dp))
+            .fillMaxSize()
+    )
     {
         var text by remember {
             mutableStateOf("")
         }
         TextField(
-            modifier = modifier
-                .requiredWidth(width = 348.dp)
-                .requiredHeight(height = 56.dp)
-                .clip(shape = RoundedCornerShape(5.dp))
-                .fillMaxSize(),
+            //modifier = modifier.fillMaxSize(),
             value = text, onValueChange = {text = it},
             label = {Text("Cornamenta")},
             placeholder = { Text("") },
@@ -660,10 +660,62 @@ fun Raza(modifier: Modifier = Modifier) {
     }
 }
 
+
+
+//@Composable
+//fun Image(modifier: Modifier = Modifier) {
+//    Column(
+//        verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        modifier = modifier
+//            .requiredWidth(width = 80.dp)
+//            .requiredHeight(height = 125.dp)
+//            .clip(shape = RoundedCornerShape(10.dp))
+//            .background(color = Color(0xffeaf2ff))
+//            .padding(all = 40.dp)
+//    ) {
+//        Image()
+//    }
+//}
+//
+//@Composable
+//fun Image(modifier: Modifier = Modifier) {
+//    Box(
+//        modifier = modifier
+//            .requiredWidth(width = 32.dp)
+//            .requiredHeight(height = 32.dp)
+//    ) {
+//        Box(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .background(color = Color(0xffb4dbff)))
+//    }
+//}
+//@Composable
+//fun Switch(modifier: Modifier = Modifier) {
+//    var siNo = remember { mutableStateOf(true) }
+//    Switch(
+//        checked = siNo.value,
+//        onCheckedChange ={siNo.value = it},
+//        modifier = modifier,
+//        colors = SwitchDefaults.colors(
+//            checkedThumbColor = Color(0xFFFFFFFF), //Color del icono
+//            checkedTrackColor = Color(0xFF000000), //Color de icono externo
+//            uncheckedThumbColor = Color(0xFFFFFFFF),
+//            uncheckedTrackColor = Color(0xFF747474)
+//        )
+//
+//    )
+//}
+
+//@Composable
+//fun Greeting(name: String, modifier: Modifier = Modifier) {
+//    AltaVacasScreen(navController = NavController(LocalContext.current))
+//}
 @Preview(showSystemUi = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun ActualizarAnimalScreenPreview() {
-    ActualizarAnimalScreen(navController = NavController(LocalContext.current))
+private fun AltaVacasScreenPreview() {
+    AltaVacasScreen(navController = NavController(LocalContext.current))
 
 }

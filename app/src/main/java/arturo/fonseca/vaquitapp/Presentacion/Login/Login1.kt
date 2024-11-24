@@ -101,7 +101,7 @@ fun Login1(auth: FirebaseAuth, navController: NavController) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Login", "signInWithEmail:success")
                             val user = auth.currentUser
-                            navController.navigate(appScreens.Home.route)
+                            navController.navigate(appScreens.MenuPrincipalScreen.route)
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Login", "signInWithEmail:failure", task.exception)
