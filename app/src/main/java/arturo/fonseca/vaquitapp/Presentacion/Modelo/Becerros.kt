@@ -10,5 +10,5 @@ data class Becerros(
     val embrion: String? = null,
     val procedencia: String? = null,
     val siniiga: String? = null,
-    val campaña: String? = null
+    val campania: String? = null
 )

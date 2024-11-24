@@ -3,6 +3,7 @@ package arturo.fonseca.vaquitapp.Presentacion.AltaBecerro
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -12,7 +13,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
@@ -27,6 +27,9 @@ import androidx.navigation.NavController
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
+
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.Calendar
 
 
@@ -34,15 +37,15 @@ import java.util.Calendar
 fun AltaBecerros(navController: NavController) {
     var nombre by remember { mutableStateOf("") }
     var sexo by remember { mutableStateOf("") }
-    var nacimiento by remember { mutableStateOf("") }
+    val nacimiento by remember { mutableStateOf("") }
     var peso by remember { mutableStateOf("") }
     var madre by remember { mutableStateOf("") }
     var padre by remember { mutableStateOf("") }
     var embrion by remember { mutableStateOf("") }
     var procedencia by remember { mutableStateOf("") }
     var siniiga by remember { mutableStateOf("") }
-    var campaña by remember { mutableStateOf("") }
-
+    var campania by remember { mutableStateOf("") }
+    val db = Firebase.firestore // Instancia de Firestore
     Column(
         modifier = Modifier
             .requiredWidth(width = 412.dp)
@@ -58,13 +61,13 @@ fun AltaBecerros(navController: NavController) {
                 .background(
                     color = Color(0xFFFFFFFF),
                 )
-                .padding(top = 38.dp, start = 32.dp, end = 32.dp,)
+                .padding(top = 55.dp, start = 32.dp, end = 32.dp)
                 .verticalScroll(rememberScrollState())
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(bottom = 10.dp,)
+                    .padding(bottom = 10.dp)
                     .height(50.dp)
                     .fillMaxWidth()
                     .background(
@@ -81,7 +84,7 @@ fun AltaBecerros(navController: NavController) {
                     color = Color.Black,
                     fontSize = 24.sp,
                     modifier = Modifier
-                        .padding(end = 32.dp,)
+                        .padding(end = 40.dp)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.logo), //Imagen del logo Vaquitapp
@@ -90,7 +93,7 @@ fun AltaBecerros(navController: NavController) {
 
                         .offset(
                             x = 2.dp,
-                            y = 0.dp
+                            y = 10.dp
                         )
                         .requiredSize(size = 50.dp)
                 )
@@ -101,12 +104,12 @@ fun AltaBecerros(navController: NavController) {
                 color = Color(0xFF2E3036),
                 fontSize = 12.sp,
                 modifier = Modifier
-                    .padding(bottom = 4.dp,)
+                    .padding(bottom = 4.dp)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(bottom = 4.dp,)
+                    .padding(bottom = 4.dp)
                     .width(400.dp)
             ) {
                 Column(
@@ -122,15 +125,15 @@ fun AltaBecerros(navController: NavController) {
                                 shape = RoundedCornerShape(5.dp)
                             )
                             .clip(shape = RoundedCornerShape(5.dp))
-
+                            .height(40.dp)
                             .width(200.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
+                            value = nombre,
                             onValueChange = {nombre = it},
-                            label = { Text("E.j: Juan Perez") },
+                            label = {Text("Nombre")},
                             modifier = Modifier
-                                .height(50.dp)
+                                .height(40.dp)
                         )
 
 
@@ -140,7 +143,7 @@ fun AltaBecerros(navController: NavController) {
                         color = Color(0xFF2E3036),
                         fontSize = 12.sp,
                         modifier = Modifier
-                            .padding(bottom = 4.dp,)
+                            .padding(bottom = 4.dp)
                     )
                     Column(
                         modifier = Modifier
@@ -153,11 +156,11 @@ fun AltaBecerros(navController: NavController) {
                             .width(200.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
+                            value = sexo,
                             onValueChange = {sexo = it},
-                            label = { Text("E.j: Blanco") },
+                            label = {Text("Sexo")},
                             modifier = Modifier
-                                .height(50.dp)
+                                .height(40.dp)
                         )
                     }
                 }
@@ -171,13 +174,13 @@ fun AltaBecerros(navController: NavController) {
                             color = Color.Red,
                             shape = RoundedCornerShape(10.dp)
                         )
-                        .padding(horizontal = 24.dp,)
+                        .padding(horizontal = 24.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.becerro),
                         contentDescription = "Becerros",
                         modifier = Modifier
-                            .padding(top = 20.dp,)
+                            .padding(top = 20.dp)
                             .height(170.dp)
                             .fillMaxWidth()
                             .requiredSize(size = 50.dp)
@@ -246,7 +249,7 @@ fun AltaBecerros(navController: NavController) {
                     color = Color(0xFF2E3036),
                     fontSize = 12.sp,
                     modifier = Modifier
-                        .padding(bottom = 7.dp,)
+                        .padding(bottom = 7.dp)
                 )
                 Column(
                     modifier = Modifier
@@ -260,10 +263,11 @@ fun AltaBecerros(navController: NavController) {
                         .fillMaxWidth()
                 ) {
                     OutlinedTextField(
-                        value = "",
+                        value = peso,
                         onValueChange = {peso = it},
-                        label = { Text("E.j: 10kg") },
+                        label = {Text("Peso")},
                         modifier = Modifier
+                            .height(40.dp)
                             .fillMaxWidth()
                     )
 
@@ -280,7 +284,7 @@ fun AltaBecerros(navController: NavController) {
                         color = Color(0xFF2E3036),
                         fontSize = 12.sp,
                         modifier = Modifier
-                            .padding(end = 150.dp,)
+                            .padding(end = 150.dp)
                     )
                     Text(
                         "Padre",
@@ -308,10 +312,11 @@ fun AltaBecerros(navController: NavController) {
                             .width(163.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
+                            value = madre,
                             onValueChange = {madre = it},
-                            label = { Text("E.j: Madre") },
+                            label = {Text("Madre")},
                             modifier = Modifier.fillMaxWidth()
+                                .height(40.dp)
                         )
 
                     }
@@ -326,10 +331,11 @@ fun AltaBecerros(navController: NavController) {
                             .width(162.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
+                            value = padre,
                             onValueChange = {padre = it},
-                            label = { Text("E.j: Padre") },
+                            label = {Text("Padre")},
                             modifier = Modifier.fillMaxWidth()
+                                .height(40.dp)
                         )
                     }
                 }
@@ -400,10 +406,11 @@ fun AltaBecerros(navController: NavController) {
                         .fillMaxWidth()
                 ) {
                     OutlinedTextField(
-                        value = "",
+                        value = embrion,
                         onValueChange = {embrion = it},
-                        label = { Text("E.j: Rancho La Loma, Guachinango,Jal") },
+                        label = {Text("Embrion")},
                         modifier = Modifier.fillMaxWidth()
+                            .height(40.dp)
                     )
 
                 }
@@ -426,11 +433,12 @@ fun AltaBecerros(navController: NavController) {
                         .fillMaxWidth()
                 ) {
                     OutlinedTextField(
-                        value = "",
+                        value = procedencia,
                         onValueChange = {procedencia = it},
-                        label = { Text("Ej.: Rancho “La Loma”, Guachinango") },
+                        label = {Text("Procedencia")},
                         modifier = Modifier
                             .fillMaxWidth()
+                            .height(40.dp)
                     )
                 }
                 Row(
@@ -472,11 +480,11 @@ fun AltaBecerros(navController: NavController) {
                             .width(163.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
+                            value = siniiga,
                             onValueChange = {siniiga = it},
-                            label = { Text("E.j: Blanco", fontSize = 15.sp) },
+                            label = {Text("SINIIGA")},
                             modifier = Modifier
-                                .height(50.dp),
+                                .height(40.dp),
                             textStyle = TextStyle(fontSize = 15.sp)
                         )
 
@@ -492,11 +500,11 @@ fun AltaBecerros(navController: NavController) {
                             .width(162.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
-                            onValueChange = {campaña = it},
-                            label = { Text("E.j: ") },
+                            value = campania,
+                            onValueChange = {campania = it},
+                            label = {Text("Campaña")},
                             modifier = Modifier.fillMaxWidth()
-                                .height(50.dp)
+                                .height(40.dp)
                         )
                     }
                 }
@@ -507,36 +515,36 @@ fun AltaBecerros(navController: NavController) {
                     Button(
                         onClick = {navController.navigate(appScreens.MenuSecundario.route)},
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
-                            contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
+                            containerColor = Color.Black, // Fondo negro
+                            contentColor = Color.White    // Texto blanco
                         ),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Bordes redondeados
+                        shape = RoundedCornerShape(16.dp), // Bordes redondeados
                         modifier = Modifier
                             .padding(8.dp) // Espaciado opcional
                             .width(150.dp)
                     ) {
                         Text(text = "Atrás")
                     }
+                    val becerro = Becerros(
+                        nombre = nombre,
+                        sexo = sexo,
+                        nacimiento = nacimiento,
+                        peso = peso,
+                        madre = madre,
+                        padre = padre,
+                        embrion = embrion,
+                        procedencia = procedencia,
+                        siniiga = siniiga,
+                        campania = campania)
                     Button(
                         onClick = {
-                            val becerro = Becerros(
-                            nombre = nombre,
-                            sexo = sexo,
-                            nacimiento = nacimiento,
-                            peso = peso,
-                            madre = madre,
-                            padre = padre,
-                                embrion = embrion,
-                            procedencia = procedencia,
-                                siniiga = siniiga,
-                                campaña = campaña
-                        )
+                        guardarBecerros(becerro)
                         },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = androidx.compose.ui.graphics.Color.Black, // Fondo negro
-                            contentColor = androidx.compose.ui.graphics.Color.White    // Texto blanco
+                            containerColor = Color.Black, // Fondo negro
+                            contentColor = Color.White    // Texto blanco
                         ),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Bordes redondeados
+                        shape = RoundedCornerShape(16.dp), // Bordes redondeados
                         modifier = Modifier
                             .padding(8.dp) // Espaciado opcional
                             .width(150.dp)
@@ -548,6 +556,18 @@ fun AltaBecerros(navController: NavController) {
             }
         }
     }
+fun guardarBecerros(becerro: Becerros) {
+    val db = Firebase.firestore
+    db.collection("Becerros")
+        .add(becerro)
+    db.collection("vaquitapp").add(becerro)
+        .addOnSuccessListener { documentReference ->
+            Log.d("Database", "Data added with ID: ${documentReference.id}")
+        }
+        .addOnFailureListener { e ->
+            Log.w("Database", "Error adding data", e)
+        }
+}
 
 
 
