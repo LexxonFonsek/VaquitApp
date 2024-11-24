@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.AltaBecerros
-import arturo.fonseca.vaquitapp.Presentacion.AltaVacas.AltaVacasScreen
+import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasScreen
 import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
 import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
 import arturo.fonseca.vaquitapp.Presentacion.Secundario.MenuSecundarioScreen

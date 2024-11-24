@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui
+package arturo.fonseca.vaquitapp.Presentacion.Secundario
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
