@@ -1,6 +1,7 @@
 package arturo.fonseca.vaquitapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,6 +17,8 @@ import arturo.fonseca.vaquitapp.SplashScreen
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 
 @Composable
@@ -26,7 +29,13 @@ fun AppNavigation(navController: NavController,
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = appScreens.SplashScreen.route) {
         composable(route = appScreens.SplashScreen.route) {
-            SplashScreen(navController)
+            LaunchedEffect(key1 = null) {
+                delay(3.seconds)
+                navController.popBackStack()
+                navController.navigate(appScreens.Login1.route)
+            }
+
+            SplashScreen()
         }
         composable(route = appScreens.Login1.route) {
             Login1(auth, navController)
