@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import arturo.fonseca.vaquitapp.Presentacion.Listas.ListaBecerros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
 
@@ -271,7 +272,7 @@ fun BtnToros(navController: NavController, modifier: Modifier) {
 
 @Composable
 fun BtnBecerros(navController: NavController, modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+    Button(onClick = {navController.navigate(route = appScreens.ListaBecerros.route)}, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),

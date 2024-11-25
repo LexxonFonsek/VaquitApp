@@ -122,6 +122,7 @@ fun Botones(navController: NavController,modifier: Modifier) {
                 )
         )
         BtnSemental(
+            navController = navController,
             modifier = Modifier
 //                .align(alignment = Alignment.TopStart)
                 .offset(
@@ -145,12 +146,13 @@ fun Botones(navController: NavController,modifier: Modifier) {
 
 
 @Composable
-fun BtnSemental(modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
-        .requiredWidth(width = 352.dp)
-        .requiredHeight(height = 120.dp),
+fun BtnSemental(navController: NavController,modifier: Modifier) {
+    Button(onClick = { navController.navigate(route = appScreens.AltaVacasRepScreen.route) },
+        modifier = modifier
+            .requiredWidth(width = 352.dp)
+            .requiredHeight(height = 120.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
-        border = BorderStroke(1.dp, Color(0xFF000000)),
+        border = BorderStroke(1.dp, Color(0xff2c2c2c)),
         shape = RoundedCornerShape(30.dp)
     ){
         Text(

@@ -9,6 +9,7 @@ import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.AltaBecerros
 import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasScreen
 import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
 import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
+import arturo.fonseca.vaquitapp.Presentacion.Listas.ListaBecerros
 import arturo.fonseca.vaquitapp.Presentacion.Secundario.MenuSecundarioScreen
 import arturo.fonseca.vaquitapp.Presentacion.Registro.Registro
 import arturo.fonseca.vaquitapp.SplashScreen
@@ -37,7 +38,7 @@ fun AppNavigation(navController: NavController,
             MenuSecundarioScreen(navController)
         }
         composable(route = appScreens.AltaVacasScreen.route) {
-            AltaVacasScreen(navController)
+            AltaVacasScreen(db,navController)
         }
         composable(route = appScreens.Registro.route) {
             Registro(auth, navController)
@@ -45,7 +46,12 @@ fun AppNavigation(navController: NavController,
         composable(route = appScreens.AltaBecerros.route) {
             AltaBecerros(db ,navController)
         }
-
+        composable(route = appScreens.AltaVacasRepScreen.route) {
+            AltaBecerros(db ,navController)
+        }
+        composable(route = appScreens.ListaBecerros.route) {
+            ListaBecerros(db)
+        }
 
 
     }

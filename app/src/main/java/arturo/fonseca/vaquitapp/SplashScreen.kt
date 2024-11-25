@@ -22,7 +22,7 @@ import org.checkerframework.checker.units.qual.C
 @Composable
 fun SplashScreen(navController: NavController){
     LaunchedEffect(key1 = true) {
-        delay(10000)
+        delay(30000)
         navController.popBackStack()
         navController.navigate(appScreens.Login1.route)
     }
