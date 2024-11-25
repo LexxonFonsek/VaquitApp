@@ -22,7 +22,8 @@ class ListaBecerrosModel: ViewModel() {
         getBecerros()
     }
 
-    private fun getBecerros() {
+    fun getBecerros() {
+
         viewModelScope.launch {
         val result = withContext(Dispatchers.IO){
             getAllBecerros()

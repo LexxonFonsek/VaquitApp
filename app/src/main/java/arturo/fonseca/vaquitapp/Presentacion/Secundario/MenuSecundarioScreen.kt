@@ -62,7 +62,7 @@ fun MenuSecundarioScreen(navController: NavController,modifier: Modifier = Modif
                 .requiredSize(size = 150.dp)
         )
         OutlinedButton(
-            onClick = {navController.popBackStack()},
+            onClick = {navController.navigate(route = appScreens.MenuPrincipalScreen.route)},
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
             contentPadding = PaddingValues(all = 12.dp),
@@ -147,7 +147,7 @@ fun Botones(navController: NavController,modifier: Modifier) {
 
 @Composable
 fun BtnSemental(navController: NavController,modifier: Modifier) {
-    Button(onClick = { navController.navigate(route = appScreens.AltaVacasRepScreen.route) },
+    Button(onClick = { navController.navigate(route = appScreens.AltaToros.route) },
         modifier = modifier
             .requiredWidth(width = 352.dp)
             .requiredHeight(height = 120.dp),

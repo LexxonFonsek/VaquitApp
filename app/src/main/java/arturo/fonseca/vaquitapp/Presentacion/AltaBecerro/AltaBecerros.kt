@@ -523,6 +523,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                 Button(
                     onClick = {
                         saveBecerro(db, Becerros( nombre, sexo, nacimiento, peso, madre, padre, embrion, procedencia, siniiga, campania))
+                        navController.navigate(appScreens.MenuSecundarioScreen.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black, // Fondo negro

@@ -53,7 +53,7 @@ import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun AltaReproduccionScreen(db: FirebaseFirestore, navController: NavController) {
+fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
     val siNo = remember { mutableStateOf(true) }
     var empadre by remember { mutableStateOf("") }
     var semental by remember { mutableStateOf("") }

@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.AltaBecerros
 import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasScreen
+import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasRepScreen
+import arturo.fonseca.vaquitapp.Presentacion.AltaToros.AltaTorosScreen
 import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
 import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
 import arturo.fonseca.vaquitapp.Presentacion.ListaB.ListaBecerros
@@ -58,7 +60,10 @@ fun AppNavigation(navController: NavController,
             AltaBecerros(db ,navController)
         }
         composable(route = appScreens.AltaVacasRepScreen.route) {
-            AltaBecerros(db ,navController)
+            AltaVacasRepScreen(db, navController)
+        }
+        composable(route = appScreens.AltaToros.route) {
+            AltaTorosScreen(db, navController)
         }
         composable(route = appScreens.ListaGeneral.route) {
             ListaGeneral(db)

@@ -7,12 +7,12 @@ sealed class appScreens(val route: String) {
     object Registro: appScreens("registro")
     object Login1: appScreens("login")
     object AltaBecerros: appScreens("Alta_becerros")
+    object AltaToros: appScreens("Altatoros")
     object SplashScreen: appScreens("Splash_screen")
     object AltaVacasRepScreen: appScreens("RepVacasScreenA")
     object ListaBecerros: appScreens("ListaBecerros")
     object ListaVacas: appScreens("ListaVacas")
     object ListaToros: appScreens("ListaToros")
-    object ListaVacasRep: appScreens("ListaVacasRep")
     object ListaGeneral: appScreens("ListaBecerros")
 
 
