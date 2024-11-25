@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredSize
@@ -260,20 +261,14 @@ fun AltaVacasScreen(db: FirebaseFirestore, navController: NavController) {
 
 
             Row(
-                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 // Campo Campaña
                 Column(
                     modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(240.dp)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     OutlinedTextField(
                         value = siniiga,
@@ -283,7 +278,7 @@ fun AltaVacasScreen(db: FirebaseFirestore, navController: NavController) {
                         enabled = siNo.value,
                         modifier = Modifier
                             .width(240.dp)
-                            .height(50.dp)
+                            .height(60.dp)
                     )
 
                 }
@@ -298,7 +293,10 @@ fun AltaVacasScreen(db: FirebaseFirestore, navController: NavController) {
                     ),
                     modifier = Modifier
                         .size(20.dp) // Ajustar tamaño del switch
-                        .padding(end = 40.dp)
+                        .offset(
+                        x = -30.dp,
+                        y = 30.dp
+                    )
                 )
 
             }

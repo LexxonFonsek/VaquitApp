@@ -283,7 +283,7 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                             shape = RoundedCornerShape(5.dp)
                         )
                         .clip(shape = RoundedCornerShape(5.dp))
-                        .width(163.dp)
+                        .fillMaxWidth()
                 ) {
                     OutlinedTextField(
                         value = cruza,
@@ -296,26 +296,7 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                     )
 
                 }
-                Column(
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(162.dp)
-                ) {
-                    OutlinedTextField(
-                        value = hierro,
-                        onValueChange = {hierro = it},
-                        label = {Text("Hierro")},
-                        textStyle = TextStyle(color = Color.Black),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                    )
-                }
+
             }
 
 
@@ -379,15 +360,9 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                 // Campo SIINIGA
                 Column(
                     modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(200.dp)
-                        .height(50.dp)
-                        .padding(end = 15.dp)
+                            .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+
                 ) {
                     OutlinedTextField(
                         value = siniiga, // Remember text state
@@ -399,9 +374,11 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                         maxLines = 1,
 
                         enabled = siNo.value, // Enable/disable based on switch state
-
+                        modifier = Modifier
+                            .width(240.dp)
+                            .height(50.dp)
                     )
-
+                    Spacer(modifier = Modifier.height(8.dp)) // Separación entre los campos
 
                 }
                 Switch(
@@ -415,7 +392,10 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                     ),
                     modifier = Modifier
                         .size(20.dp) // Ajustar el tamaño del Switch
-                        .offset(x = 300.dp, y = 0.dp)
+                        .offset(
+                            x = 300.dp,
+                            y = -60.dp
+                        )
 
                 )
                 Spacer(modifier = Modifier.height(8.dp)) // Separación entre los campos

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.icu.util.Calendar
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -47,7 +48,9 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import arturo.fonseca.vaquitapp.Presentacion.AltaToros.saveToros
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Reproduccion
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Toros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.firestore.FirebaseFirestore
@@ -126,7 +129,7 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                     OutlinedTextField(
                         value = empadre,
                         onValueChange = {empadre = it},
-                        label = { Text("Nombre") },
+                        label = { Text("Empadre") },
                         modifier = Modifier.weight(1f) // Ocupa el espacio restante
                     )
                     Spacer(modifier = Modifier.width(8.dp)) // Espaciado entre el campo y el botón
@@ -150,8 +153,8 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                             .width(240.dp)
                     ) {
                         OutlinedTextField(
-                            value = "",
-                            onValueChange = { },
+                            value = semental,
+                            onValueChange = { semental = it },
                             label = { Text("Semental") },
                             textStyle = TextStyle(color = Color.Black),
                             modifier = Modifier
@@ -190,8 +193,8 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
-                        value = "",
-                        onValueChange = {},
+                        value = semen,
+                        onValueChange = {semen = it},
                         label = { Text("Información del semen/ embrión") },
                         modifier = Modifier.weight(1f)
                     )
@@ -251,8 +254,8 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                         .padding(top = 16.dp)
                 ) {
                     OutlinedTextField(
-                        value = "",
-                        onValueChange = {},
+                        value = parto,
+                        onValueChange = {parto = it},
                         label = { Text("Cantidad de partos") },
                         modifier = Modifier.weight(1f)
                     )
@@ -260,15 +263,15 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                 }
 
                 OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
+                    value = estado,
+                    onValueChange = {estado = it},
                     label = { Text("Estado") },
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 OutlinedTextField(
-                    value = "",
-                    onValueChange = {},
+                    value = observacion,
+                    onValueChange = {observacion = it},
                     label = { Text("Observaciones") },
                     modifier = Modifier.fillMaxWidth()
                         .height(150.dp)
@@ -295,7 +298,7 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
 
                     Button(
                         onClick = {
-
+                            saveRep( db, Reproduccion( empadre, semental, semen, nacimiento, parto, estado, observacion))
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Black, // Fondo negro
@@ -315,6 +318,20 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
         }
     }
 
+}
+
+fun saveRep(db: FirebaseFirestore, reproduccion: Reproduccion) {
+    db.collection("reproducciones")
+        .add(reproduccion)
+        .addOnSuccessListener { documentReference ->
+            Log.d("Vaquitapp", "SUCCESS added with ID: ${documentReference.id}")
+        }
+        .addOnFailureListener {
+            Log.w("Vaquitapp", "Error adding document", it)
+        }
+        .addOnCompleteListener {
+            Log.d("Vaquitapp", "Complete")
+        }
 }
 
 fun showDatePicker4(context: Context, onDateSelected: (String) -> Unit) {

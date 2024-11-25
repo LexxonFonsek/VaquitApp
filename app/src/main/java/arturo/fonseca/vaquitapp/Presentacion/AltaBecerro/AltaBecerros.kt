@@ -423,15 +423,9 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                 // Campo SIINIGA
                 Column(
                     modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(5.dp)
-                        )
-                        .clip(shape = RoundedCornerShape(5.dp))
-                        .width(200.dp)
-                        .height(50.dp)
-                        .padding(end = 15.dp)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+
                 ) {
                     OutlinedTextField(
                         value = siniiga, // Remember text state
@@ -459,7 +453,10 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     ),
                     modifier = Modifier
                         .size(20.dp) // Ajustar el tamaño del Switch
-                        .offset(x = 300.dp, y=0.dp)
+                        .offset(
+                            x = 300.dp,
+                            y = -40.dp
+                        )
 
                 )
                 Spacer(modifier = Modifier.height(8.dp)) // Separación entre los campos
