@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui
+package arturo.fonseca.vaquitapp.Presentacion.Secundario
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -115,11 +115,11 @@ fun Botones(navController: NavController,modifier: Modifier) {
         BtnVaca(
             navController = navController,
             modifier = Modifier
-            //.align(alignment = Alignment.TopStart)
-            .offset(
-                x = 30.dp,
-                y = 250.dp
-            )
+                //.align(alignment = Alignment.TopStart)
+                .offset(
+                    x = 30.dp,
+                    y = 250.dp
+                )
         )
         BtnSemental(
             modifier = Modifier
@@ -165,8 +165,8 @@ fun BtnSemental(modifier: Modifier) {
 fun BtnVaca(navController: NavController,modifier: Modifier) {
     Button(onClick = { navController.navigate(route = appScreens.AltaVacasScreen.route) },
         modifier = modifier
-        .requiredWidth(width = 352.dp)
-        .requiredHeight(height = 120.dp),
+            .requiredWidth(width = 352.dp)
+            .requiredHeight(height = 120.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
         border = BorderStroke(1.dp, Color(0xff2c2c2c)),
         shape = RoundedCornerShape(30.dp)
@@ -185,8 +185,8 @@ fun BtnVaca(navController: NavController,modifier: Modifier) {
 fun BtnBecerro(navController: NavController,modifier: Modifier) {
     Button(onClick = { navController.navigate(route = appScreens.AltaBecerros.route) },
         modifier = modifier
-        .requiredWidth(width = 352.dp)
-        .requiredHeight(height = 120.dp),
+            .requiredWidth(width = 352.dp)
+            .requiredHeight(height = 120.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
         border = BorderStroke(1.dp, Color(0xff2c2c2c)),
         shape = RoundedCornerShape(30.dp)

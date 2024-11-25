@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.Presentacion.AltaBecerro
+package arturo.fonseca.vaquitapp.Presentacion.AltaToros
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -29,7 +29,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.showDatePicker
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Toros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,15 +42,15 @@ import java.util.Calendar
 
 
 @Composable
-fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
+fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
     val siNo = remember { mutableStateOf(true) }
     var nombre by remember { mutableStateOf("") }
-    var sexo by remember { mutableStateOf("") }
-    val nacimiento by remember { mutableStateOf("") }
-    var peso by remember { mutableStateOf("") }
-    var madre by remember { mutableStateOf("") }
-    var padre by remember { mutableStateOf("") }
-    var embrion by remember { mutableStateOf("") }
+    var color by remember { mutableStateOf("") }
+    var raza by remember { mutableStateOf("") }
+    var nacimiento by remember { mutableStateOf("") }
+    var cruza by remember { mutableStateOf("") }
+    var cornamenta by remember { mutableStateOf("") }
+    var hierro by remember { mutableStateOf("") }
     var procedencia by remember { mutableStateOf("") }
     var siniiga by remember { mutableStateOf("") }
     var campania by remember { mutableStateOf("") }
@@ -87,7 +89,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                 ) {
                 }
                 Text(
-                    "Alta Becerros",
+                    "Alta Toros",
                     color = Color.Black,
                     fontSize = 24.sp,
                     modifier = Modifier
@@ -154,25 +156,22 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                             .width(200.dp)
                     ) {
                         OutlinedTextField(
-                            value = sexo,
-                            onValueChange = {sexo = it},
-                            label = {Text("Sexo")},
+                            value = color,
+                            onValueChange = {color = it},
+                            label = {Text("Color")},
                             textStyle = TextStyle(color = Color.Black),
                             modifier = Modifier
                                 .height(50.dp)
                         )
                     }
                 }
-
+                Spacer(modifier = Modifier.height(10.dp))
                 Column(
                     modifier = Modifier
                         .clip(shape = RoundedCornerShape(10.dp))
                         .width(220.dp)
                         .height(100.dp)
-                        .background(
-                            color = Color.Red,
-                            shape = RoundedCornerShape(10.dp)
-                        )
+
                         .padding(horizontal = 24.dp)
                 ) {
                     Image(
@@ -182,7 +181,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                             .padding(top = 20.dp)
                             .height(170.dp)
                             .fillMaxWidth()
-                            .requiredSize(size = 50.dp)
+                            .requiredSize(size = 100.dp)
                     )
                     Text(
                         "Foto",
@@ -251,9 +250,9 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     .fillMaxWidth()
             ) {
                 OutlinedTextField(
-                    value = peso,
-                    onValueChange = {peso = it},
-                    label = {Text("Peso")},
+                    value = raza,
+                    onValueChange = {raza = it},
+                    label = {Text("Raza")},
                     modifier = Modifier
                         .height(50.dp)
                         .fillMaxWidth()
@@ -287,9 +286,9 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                         .width(163.dp)
                 ) {
                     OutlinedTextField(
-                        value = madre,
-                        onValueChange = {madre = it},
-                        label = {Text("Madre")},
+                        value = cruza,
+                        onValueChange = {cruza = it},
+                        label = {Text("Cruza")},
                         textStyle = TextStyle(color = Color.Black),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -308,9 +307,9 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                         .width(162.dp)
                 ) {
                     OutlinedTextField(
-                        value = padre,
-                        onValueChange = {padre = it},
-                        label = {Text("Padre")},
+                        value = hierro,
+                        onValueChange = {hierro = it},
+                        label = {Text("Hierro")},
                         textStyle = TextStyle(color = Color.Black),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -318,54 +317,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     )
                 }
             }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(bottom = 3.dp,)
-                    .fillMaxWidth()
-            ) {
-//                CoilImage(
-//                    imageModel = {"https://i.imgur.com/1tMFzp8.png"},
-//                    imageOptions = ImageOptions(contentScale = ContentScale.Crop),
-//                    modifier = Modifier
-//                        .padding(end = 9.dp,)
-//                        .width(20.dp)
-//                        .height(20.dp)
-//                )
-                var state by remember { mutableStateOf(true) }
 
-
-                RadioButton(
-                    selected = state,
-                    onClick = { state = true },
-                    modifier = Modifier.semantics {
-                        contentDescription = "Localized Description"
-                    }
-                )
-                Text(
-                    "Inseminación artificial",
-                    color = Color(0xFF000000),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(end = 4.dp,)
-                )
-
-                RadioButton(
-                    selected = !state,
-                    onClick = { state = true },
-                    modifier = Modifier.semantics {
-                        contentDescription = "Localized Description"
-                    }
-                )
-
-                Text(
-                    "Desconozco Padres",
-                    color = Color(0xFF000000),
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(end = 1.dp,)
-                )
-            }
 
             Column(
                 modifier = Modifier
@@ -379,9 +331,9 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     .fillMaxWidth()
             ) {
                 OutlinedTextField(
-                    value = embrion,
-                    onValueChange = {embrion = it},
-                    label = {Text("Información del semen/embrion")},
+                    value = cornamenta,
+                    onValueChange = {cornamenta = it},
+                    label = {Text("Cornamenta")},
                     textStyle = TextStyle(color = Color.Black),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -463,7 +415,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     ),
                     modifier = Modifier
                         .size(20.dp) // Ajustar el tamaño del Switch
-                        .offset(x = 300.dp, y=0.dp)
+                        .offset(x = 300.dp, y = 0.dp)
 
                 )
                 Spacer(modifier = Modifier.height(8.dp)) // Separación entre los campos
@@ -522,7 +474,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
 
                 Button(
                     onClick = {
-                        saveBecerro(db, Becerros( nombre, sexo, nacimiento, peso, madre, padre, embrion, procedencia, siniiga, campania))
+                        saveToros( db, Toros( nombre, color, raza, nacimiento, procedencia, cornamenta, siniiga, campania, hierro))
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black, // Fondo negro
@@ -545,27 +497,11 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
 
 
 
-fun showDatePicker(context: Context, onDateSelected: (String) -> Unit) {
-    val calendar = Calendar.getInstance()
-    val year = calendar.get(Calendar.YEAR)
-    val month = calendar.get(Calendar.MONTH)
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-    DatePickerDialog(
-        context,
-        { _, selectedYear, selectedMonth, selectedDay ->
-            val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-            onDateSelected(formattedDate)
-        },
-        year,
-        month,
-        day
-    ).show()
-}
 
-fun saveBecerro(db: FirebaseFirestore, becerro: Becerros){
-    db.collection("becerros")
-        .add(becerro)
+fun saveToros(db: FirebaseFirestore, toro: Toros){
+    db.collection("toros")
+        .add(toro)
         .addOnSuccessListener { documentReference ->
             Log.d("Vaquitapp", "SUCCESS added with ID: ${documentReference.id}")
         }
@@ -577,11 +513,10 @@ fun saveBecerro(db: FirebaseFirestore, becerro: Becerros){
         }
 
 }
-//
-//@Preview(showSystemUi = true)
-//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-//@Preview(widthDp = 412, heightDp = 917)
-//@Composable
-//internal fun AltaBecerrosPreview() {
-//    AltaBecerros( navController = NavController(LocalContext.current))
-//}
+
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+internal fun AltaTorosPreview() {
+    AltaTorosScreen(db = Firebase.firestore,navController = NavController(LocalContext.current))
+}

@@ -1,24 +1,34 @@
 package arturo.fonseca.vaquitapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import arturo.fonseca.vaquitapp.AltaReproduccionVacas.ui.AltaVacasScreen
-import arturo.fonseca.vaquitapp.ui.theme.AltaBecerros.ui.AltaBecerros
-import arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui.MenuPrincipalScreen
-import arturo.fonseca.vaquitapp.ui.theme.menuSecundarioAniadir.ui.MenuSecundarioScreen
-import arturo.fonseca.vaquitapp.ui.theme.registro.ui.Registro
-import arturo.fonseca.vaquitapp.ui.theme.login.ui.Login1
-
+import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.AltaBecerros
+import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasScreen
+import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
+import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
+import arturo.fonseca.vaquitapp.Presentacion.Secundario.MenuSecundarioScreen
+import arturo.fonseca.vaquitapp.Presentacion.Registro.Registro
+import arturo.fonseca.vaquitapp.SplashScreen
+import arturo.fonseca.vaquitapp.navigation.appScreens
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(navController: NavController,
+                  auth: FirebaseAuth,
+                  db: FirebaseFirestore
+) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = appScreens.Login1.route) {
+    NavHost(navController = navController, startDestination = appScreens.SplashScreen.route) {
+        composable(route = appScreens.SplashScreen.route) {
+            SplashScreen(navController)
+        }
         composable(route = appScreens.Login1.route) {
-            Login1(navController)
+            Login1(auth, navController)
         }
         composable(route = appScreens.MenuPrincipalScreen.route) {
             MenuPrincipalScreen(navController)
@@ -30,11 +40,12 @@ fun AppNavigation() {
             AltaVacasScreen(navController)
         }
         composable(route = appScreens.Registro.route) {
-            Registro(navController)
+            Registro(auth, navController)
         }
         composable(route = appScreens.AltaBecerros.route) {
-            AltaBecerros(navController)
+            AltaBecerros(db ,navController)
         }
+
 
 
     }

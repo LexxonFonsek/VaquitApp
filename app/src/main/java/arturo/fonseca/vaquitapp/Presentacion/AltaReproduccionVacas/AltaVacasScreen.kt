@@ -1,6 +1,5 @@
 
-
-package arturo.fonseca.vaquitapp.AltaReproduccionVacas.ui
+package arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas
 
 import android.content.res.Configuration
 import android.icu.util.Calendar

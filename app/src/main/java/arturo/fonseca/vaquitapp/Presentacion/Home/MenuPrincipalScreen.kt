@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.ui.theme.menuAgregar.ui
+package arturo.fonseca.vaquitapp.Presentacion.Home
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -197,12 +197,12 @@ fun MenuPrincipalScreen(navController: NavController,modifier: Modifier = Modifi
 fun BtnAniadir(navController: NavController,modifier: Modifier) {
     Button(onClick = { navController.navigate(route = appScreens.MenuSecundarioScreen.route) },
         modifier = modifier
-        .requiredWidth(352.dp)
-        .requiredHeight(height = 60.dp),
+            .requiredWidth(352.dp)
+            .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
         border = BorderStroke(1.dp, Color(0xff2c2c2c)),
         shape = RoundedCornerShape(10.dp)
-        ) {
+    ) {
         Text(
             text = "Añadir",
             color = Color(0xFFFFFFFF),
@@ -220,7 +220,7 @@ fun BtnGeneral(navController: NavController,modifier: Modifier) {
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
         border = BorderStroke(1.dp, Color(0xff000000)),
         shape = RoundedCornerShape(10.dp)
-        ) {
+    ) {
         Text(
             text = "Lista de ganado",
             color = Color(0xFFFFFFFF),
@@ -447,5 +447,5 @@ fun BtnVendidos(navController: NavController, modifier: Modifier) {
 @Preview(widthDp = 412, heightDp = 917)
 @Composable
 private fun MenuPrincipalScreenPreview() {
-   MenuPrincipalScreen(navController = NavController(LocalContext.current))
+    MenuPrincipalScreen(navController = NavController(LocalContext.current))
 }

@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.InfoAnimal.ui
+package arturo.fonseca.vaquitapp.Presentacion.InfoAnimal
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
