@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import arturo.fonseca.vaquitapp.Presentacion.Listas.ListaBecerros
 import arturo.fonseca.vaquitapp.R
 import arturo.fonseca.vaquitapp.navigation.appScreens
 
@@ -215,7 +214,7 @@ fun BtnAniadir(navController: NavController,modifier: Modifier) {
 }
 @Composable
 fun BtnGeneral(navController: NavController,modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+    Button(onClick = { navController.navigate(route = appScreens.ListaGeneral.route)}, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -234,7 +233,7 @@ fun BtnGeneral(navController: NavController,modifier: Modifier) {
 
 @Composable
 fun BtnVacas(navController: NavController,modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+    Button(onClick = { navController.navigate(route = appScreens.ListaVacas.route)}, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -253,7 +252,7 @@ fun BtnVacas(navController: NavController,modifier: Modifier) {
 
 @Composable
 fun BtnToros(navController: NavController, modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+    Button(onClick = { navController.navigate(route = appScreens.ListaToros.route)}, modifier = modifier
         .requiredWidth(width = 168.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),
@@ -329,7 +328,7 @@ fun BtnNutricion(navController: NavController, modifier: Modifier) {
 
 @Composable
 fun BtnReproduccion(navController: NavController, modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier
+    Button(onClick = {  navController.navigate(route = appScreens.AltaVacasRepScreen.route)}, modifier = modifier
         .requiredWidth(width = 352.dp)
         .requiredHeight(height = 60.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF000000)),

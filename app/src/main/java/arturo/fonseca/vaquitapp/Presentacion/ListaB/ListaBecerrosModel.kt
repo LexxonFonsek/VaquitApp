@@ -1,13 +1,11 @@
-package arturo.fonseca.vaquitapp.Presentacion.Listas
+package arturo.fonseca.vaquitapp.Presentacion.ListaB
 
-import androidx.compose.runtime.snapshots.Snapshot
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.ktx.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

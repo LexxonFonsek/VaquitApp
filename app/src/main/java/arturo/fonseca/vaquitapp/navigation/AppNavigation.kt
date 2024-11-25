@@ -10,11 +10,13 @@ import arturo.fonseca.vaquitapp.Presentacion.AltaBecerro.AltaBecerros
 import arturo.fonseca.vaquitapp.Presentacion.AltaReproduccionVacas.AltaVacasScreen
 import arturo.fonseca.vaquitapp.Presentacion.Login.Login1
 import arturo.fonseca.vaquitapp.Presentacion.Home.MenuPrincipalScreen
-import arturo.fonseca.vaquitapp.Presentacion.Listas.ListaBecerros
+import arturo.fonseca.vaquitapp.Presentacion.ListaB.ListaBecerros
+import arturo.fonseca.vaquitapp.Presentacion.ListaGeneral.ListaGeneral
+import arturo.fonseca.vaquitapp.Presentacion.ListaT.ListaToros
+import arturo.fonseca.vaquitapp.Presentacion.ListaV.ListaVacas
 import arturo.fonseca.vaquitapp.Presentacion.Secundario.MenuSecundarioScreen
 import arturo.fonseca.vaquitapp.Presentacion.Registro.Registro
 import arturo.fonseca.vaquitapp.SplashScreen
-import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.delay
@@ -58,9 +60,19 @@ fun AppNavigation(navController: NavController,
         composable(route = appScreens.AltaVacasRepScreen.route) {
             AltaBecerros(db ,navController)
         }
+        composable(route = appScreens.ListaGeneral.route) {
+            ListaGeneral(db)
+        }
         composable(route = appScreens.ListaBecerros.route) {
             ListaBecerros(db)
         }
+        composable(route = appScreens.ListaVacas.route) {
+            ListaVacas(db)
+        }
+        composable(route = appScreens.ListaToros.route) {
+            ListaToros(db)
+        }
+
 
 
     }
