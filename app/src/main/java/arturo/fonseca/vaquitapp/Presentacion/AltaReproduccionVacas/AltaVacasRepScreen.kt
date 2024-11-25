@@ -274,7 +274,7 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                     onValueChange = {observacion = it},
                     label = { Text("Observaciones") },
                     modifier = Modifier.fillMaxWidth()
-                        .height(150.dp)
+                        .height(120.dp)
                 )
 
 
