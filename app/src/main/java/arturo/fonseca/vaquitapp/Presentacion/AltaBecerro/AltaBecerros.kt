@@ -167,12 +167,8 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                 Column(
                     modifier = Modifier
                         .clip(shape = RoundedCornerShape(10.dp))
-                        .width(220.dp)
-                        .height(100.dp)
-                        .background(
-                            color = Color.Red,
-                            shape = RoundedCornerShape(10.dp)
-                        )
+                        .width(250.dp)
+                        .height(150.dp)
                         .padding(horizontal = 24.dp)
                 ) {
                     Image(
@@ -182,7 +178,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                             .padding(top = 20.dp)
                             .height(170.dp)
                             .fillMaxWidth()
-                            .requiredSize(size = 50.dp)
+                            .requiredSize(size = 100.dp)
                     )
                     Text(
                         "Foto",
@@ -483,12 +479,13 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                                 shape = RoundedCornerShape(5.dp)
                             )
                             .clip(shape = RoundedCornerShape(5.dp))
-                            .weight(1f) // Para ocupar el espacio disponible
+                            .fillMaxWidth() // Para ocupar el espacio disponible
                     ) {
                         OutlinedTextField(
                             value = campania,
                             onValueChange = { campania = it },
                             placeholder = { Text("Campaña") },
+                            textStyle = TextStyle(color = Color.Black),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(50.dp)

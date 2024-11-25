@@ -280,6 +280,7 @@ fun AltaVacasScreen(db: FirebaseFirestore, navController: NavController) {
                         onValueChange = { siniiga = it },
                         label = { Text("Número SINIIGA") },
                         textStyle = TextStyle(color = Color.Black),
+                        enabled = siNo.value,
                         modifier = Modifier
                             .width(240.dp)
                             .height(50.dp)
