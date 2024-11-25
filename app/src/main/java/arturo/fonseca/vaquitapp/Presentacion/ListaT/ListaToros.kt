@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.Presentacion.Listas
+package arturo.fonseca.vaquitapp.Presentacion.ListaT
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,15 +20,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
+import arturo.fonseca.vaquitapp.Presentacion.ListaV.ListaVacasModel
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Toros
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Vacas
 import arturo.fonseca.vaquitapp.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 //@Preview
 @Composable
-fun ListaBecerros(db: FirebaseFirestore, viewModel: ListaBecerrosModel = ListaBecerrosModel()) {
+fun ListaToros(db: FirebaseFirestore, viewModel: ListaTorosModel = ListaTorosModel()) {
 
-    val becerros: State<List<Becerros>> = viewModel.becerros.collectAsState()
+    val toros: State<List<Toros>> = viewModel.toros.collectAsState()
 
     Column(
         modifier = Modifier
@@ -36,30 +38,30 @@ fun ListaBecerros(db: FirebaseFirestore, viewModel: ListaBecerrosModel = ListaBe
             .background(Color.White)
     ) {
         Text(
-        "Becerros",
+        "Toros",
         color = Color.Black,
         fontWeight = FontWeight.Bold,
         fontSize = 30.sp // Use sp for font size
     )
 
         LazyColumn {
-            items(becerros.value) {
-                becerroItem(it)
+            items(toros.value) {
+                toroItem(it)
             }
         }
     }
 }
 
 @Composable
-fun becerroItem(becerros: Becerros) {
+fun toroItem(toros: Toros) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
-            contentDescription = "BecerroIcon",
+            contentDescription = "ToroIcon",
             modifier = Modifier.size(100.dp)
         )
         Spacer(modifier = Modifier.height(6.dp))
-        Text(text= becerros.nombre.toString(),color = Color.Black)
+        Text(text= toros.nombre.toString(),color = Color.Black)
 
     }
 }

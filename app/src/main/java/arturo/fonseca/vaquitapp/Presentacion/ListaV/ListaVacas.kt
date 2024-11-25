@@ -1,4 +1,4 @@
-package arturo.fonseca.vaquitapp.Presentacion.Listas
+package arturo.fonseca.vaquitapp.Presentacion.ListaV
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,15 +20,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
+import arturo.fonseca.vaquitapp.Presentacion.ListaV.ListaVacasModel
+import arturo.fonseca.vaquitapp.Presentacion.Modelo.Vacas
 import arturo.fonseca.vaquitapp.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 //@Preview
 @Composable
-fun ListaBecerros(db: FirebaseFirestore, viewModel: ListaBecerrosModel = ListaBecerrosModel()) {
+fun ListaVacas(db: FirebaseFirestore, viewModel: ListaVacasModel = ListaVacasModel()) {
 
-    val becerros: State<List<Becerros>> = viewModel.becerros.collectAsState()
+    val vacas: State<List<Vacas>> = viewModel.vacas.collectAsState()
 
     Column(
         modifier = Modifier
@@ -36,30 +37,30 @@ fun ListaBecerros(db: FirebaseFirestore, viewModel: ListaBecerrosModel = ListaBe
             .background(Color.White)
     ) {
         Text(
-        "Becerros",
+        "Vacas",
         color = Color.Black,
         fontWeight = FontWeight.Bold,
         fontSize = 30.sp // Use sp for font size
     )
 
         LazyColumn {
-            items(becerros.value) {
-                becerroItem(it)
+            items(vacas.value) {
+                vacaItem(it)
             }
         }
     }
 }
 
 @Composable
-fun becerroItem(becerros: Becerros) {
+fun vacaItem(vacas: Vacas) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
-            contentDescription = "BecerroIcon",
+            contentDescription = "VacaIcon",
             modifier = Modifier.size(100.dp)
         )
         Spacer(modifier = Modifier.height(6.dp))
-        Text(text= becerros.nombre.toString(),color = Color.Black)
+        Text(text= vacas.nombre.toString(),color = Color.Black)
 
     }
 }
