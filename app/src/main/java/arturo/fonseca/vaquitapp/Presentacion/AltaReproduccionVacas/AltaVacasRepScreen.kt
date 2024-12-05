@@ -157,6 +157,7 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                             onValueChange = { semental = it },
                             label = { Text("Semental") },
                             textStyle = TextStyle(color = Color.Black),
+                            enabled = siNo.value,
                             modifier = Modifier
                                 .width(240.dp)
                                 .height(50.dp)

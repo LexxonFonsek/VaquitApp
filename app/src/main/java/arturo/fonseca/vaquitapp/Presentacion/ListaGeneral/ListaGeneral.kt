@@ -20,9 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import arturo.fonseca.vaquitapp.Presentacion.ListaB.becerroItem
-import arturo.fonseca.vaquitapp.Presentacion.ListaT.toroItem
-import arturo.fonseca.vaquitapp.Presentacion.ListaV.vacaItem
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Toros
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Vacas
@@ -67,42 +64,42 @@ fun ListaGeneral(db: FirebaseFirestore, viewModel: ListaGeneralModel = ListaGene
     }
 }
 
-//@Composable
-//fun becerroItem(becerros: Becerros) {
-//    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-//        Image(
-//            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
-//            contentDescription = "BecerroIcon",
-//            modifier = Modifier.size(100.dp)
-//        )
-//        Spacer(modifier = Modifier.height(6.dp))
-//        Text(text= becerros.nombre.toString(),color = Color.Black)
-//
-//    }
-//}
-//@Composable
-//fun vacaItem(vacas: Vacas) {
-//    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-//        Image(
-//            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
-//            contentDescription = "VacaIcon",
-//            modifier = Modifier.size(100.dp)
-//        )
-//        Spacer(modifier = Modifier.height(6.dp))
-//        Text(text= vacas.nombre.toString(),color = Color.Black)
-//
-//    }
-//}
-//@Composable
-//fun toroItem(toros: Toros){
-//    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-//        Image(
-//            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
-//            contentDescription = "toroIcon",
-//            modifier = Modifier.size(100.dp)
-//        )
-//        Spacer(modifier = Modifier.height(6.dp))
-//        Text(text= toros.nombre.toString(),color = Color.Black)
-//
-//    }
-//}
+@Composable
+fun becerroItem(becerros: Becerros) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Image(
+            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
+            contentDescription = "BecerroIcon",
+            modifier = Modifier.size(100.dp)
+        )
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(text= becerros.nombre.toString(),color = Color.Black)
+
+    }
+}
+@Composable
+fun vacaItem(vacas: Vacas) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Image(
+            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
+            contentDescription = "VacaIcon",
+            modifier = Modifier.size(100.dp)
+        )
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(text= vacas.nombre.toString(),color = Color.Black)
+
+    }
+}
+@Composable
+fun toroItem(toros: Toros){
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Image(
+            painter = painterResource(id = R.drawable.becerroicon), //Imagen del logo Vaquitapp
+            contentDescription = "toroIcon",
+            modifier = Modifier.size(100.dp)
+        )
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(text= toros.nombre.toString(),color = Color.Black)
+
+    }
+}
