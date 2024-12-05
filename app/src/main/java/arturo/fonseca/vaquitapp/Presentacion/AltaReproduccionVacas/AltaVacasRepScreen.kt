@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.icu.util.Calendar
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -300,6 +301,7 @@ fun AltaVacasRepScreen(db: FirebaseFirestore, navController: NavController) {
                     Button(
                         onClick = {
                             saveRep( db, Reproduccion( empadre, semental, semen, nacimiento, parto, estado, observacion))
+                            Toast.makeText(context , R.string.mensaje_exito, Toast.LENGTH_SHORT).show()
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Black, // Fondo negro

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -20,17 +21,20 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.unit.*
+
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
 import androidx.navigation.NavController
 import arturo.fonseca.vaquitapp.Presentacion.Modelo.Becerros
 import arturo.fonseca.vaquitapp.R
+
 import arturo.fonseca.vaquitapp.navigation.appScreens
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -518,6 +522,7 @@ fun AltaBecerros(db: FirebaseFirestore, navController: NavController) {
                     onClick = {
                         saveBecerro(db, Becerros( nombre, sexo, nacimiento, peso, madre, padre, embrion, procedencia, siniiga, campania))
                         navController.navigate(appScreens.MenuSecundarioScreen.route)
+                        Toast.makeText(context , R.string.mensaje_exito, Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black, // Fondo negro

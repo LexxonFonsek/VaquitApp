@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -455,6 +456,7 @@ fun AltaTorosScreen(db: FirebaseFirestore,navController: NavController) {
                 Button(
                     onClick = {
                         saveToros( db, Toros( nombre, color, raza, nacimiento, procedencia, cornamenta, siniiga, campania, hierro))
+                        Toast.makeText(context , R.string.mensaje_exito, Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black, // Fondo negro

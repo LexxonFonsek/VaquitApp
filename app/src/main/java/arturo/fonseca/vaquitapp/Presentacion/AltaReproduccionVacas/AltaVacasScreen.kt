@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.icu.util.Calendar
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -362,7 +363,8 @@ fun AltaVacasScreen(db: FirebaseFirestore, navController: NavController) {
                 Button(
                     onClick = {
                         saveVaca(db, Vacas(nombre, color, raza, cruza, selectedDate, siniiga, campania, peso, cornamenta, procedencia))
-                    },
+                        Toast.makeText( context, "Vaca guardada", Toast.LENGTH_SHORT).show()
+                              },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black, // Fondo negro
                         contentColor = Color.White    // Texto blanco

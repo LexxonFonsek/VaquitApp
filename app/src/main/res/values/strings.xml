@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Vaquitapp</string>
+    <string name="mensaje_exito">GUARDADO CORRECTAMENTE</string>
 </resources>
